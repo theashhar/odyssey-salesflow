@@ -18,5 +18,9 @@
     "electron-builder": "^22.11.7",
     "electron-is-dev": "^3.0.1",
     "wait-on": "^6.0.0"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.3",
+    "react-chartjs-2": "^5.2.0"
   }
 }
