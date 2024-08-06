@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "John Doe", "partnerName": "ABC Corp", "assignedOrder": "Order #123" },
+  { "id": 2, "name": "Jane Smith", "partnerName": "XYZ Inc", "assignedOrder": "Order #456" }
+]
