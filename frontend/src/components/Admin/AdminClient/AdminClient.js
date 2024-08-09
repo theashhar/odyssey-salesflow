@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import './AdminClient.css';
-import  clientsData  from '../../Dummy/client.json';
-
-
+import React, { useState } from "react";
+import "./AdminClient.css";
+import clientsData from "../../../data/adminclient.json";
 
 const ClientsPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSalesPerson, setSelectedSalesPerson] = useState('');
-  const [clients] = useState(clientsData); 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSalesPerson, setSelectedSalesPerson] = useState("");
+  const [clients] = useState(clientsData);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -28,7 +26,10 @@ const ClientsPage = () => {
             value={searchTerm}
             onChange={handleSearchChange}
           />
-          <select value={selectedSalesPerson} onChange={handleSalesPersonChange}>
+          <select
+            value={selectedSalesPerson}
+            onChange={handleSalesPersonChange}
+          >
             <option value="">Select SalesPerson</option>
             <option value="salesperson1">SalesPerson 1</option>
             <option value="salesperson2">SalesPerson 2</option>

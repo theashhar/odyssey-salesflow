@@ -1,33 +1,33 @@
-import React from 'react';
-import Salesperson from './Salesperson';
-import { salespeopleData } from '../../components/Dummy/dummyData';
-import './AdminSection.css';
-import { FaUser } from 'react-icons/fa';
-import { FaPlus, FaFileExcel } from 'react-icons/fa';
+import React from "react";
+import Salesperson from "./Salesperson";
+import salespeopleData from "../../data/salesperson.json";
+import "./AdminSection.css";
+import { FaUser } from "react-icons/fa";
+import { FaPlus, FaFileExcel } from "react-icons/fa";
 
 const AdminSection = () => {
   const handleUpdate = (name) => {
-    console.log('Update details for:', name);
+    console.log("Update details for:", name);
     // Implement update logic
   };
 
   const handleRemove = (name) => {
-    console.log('Remove salesperson:', name);
+    console.log("Remove salesperson:", name);
     // Implement remove logic
   };
 
   const handleRoleChange = (name) => {
-    console.log('Change role for:', name);
+    console.log("Change role for:", name);
     // Implement role change logic
   };
 
   const handleAddNew = () => {
-    console.log('Add new salesperson');
+    console.log("Add new salesperson");
     // Implement add new logic
   };
 
   const handleExport = () => {
-    console.log('Export to Excel');
+    console.log("Export to Excel");
     // Implement export logic
   };
 
@@ -42,7 +42,7 @@ const AdminSection = () => {
           <button onClick={handleAddNew} title="Add New">
             <FaPlus /> Add New
           </button>
-          <button onClick={handleExport}  title="Export to Excel">
+          <button onClick={handleExport} title="Export to Excel">
             <FaFileExcel /> Export
           </button>
         </div>

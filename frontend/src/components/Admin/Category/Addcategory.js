@@ -1,15 +1,15 @@
 // src/components/AddCategoryPage.js
-import React, { useState, useEffect } from 'react';
-import './AddCategoryPage.css';
-import { saveAs } from 'file-saver';
-import oemData from '../../Dummy/category/oemData.json';
-import productLineData from '../../Dummy/category/productLineData.json';
-import partnerData from '../../Dummy/category/partnerData.json';
+import React, { useState, useEffect } from "react";
+import "./AddCategoryPage.css";
+import { saveAs } from "file-saver";
+import oemData from "../../../data/category/oemData.json";
+import productLineData from "../../../data/category/productLineData.json";
+import partnerData from "../../../data/category/partnerData.json";
 
 const AddCategoryPage = () => {
-  const [oem, setOem] = useState('');
-  const [productLine, setProductLine] = useState('');
-  const [partner, setPartner] = useState('');
+  const [oem, setOem] = useState("");
+  const [productLine, setProductLine] = useState("");
+  const [partner, setPartner] = useState("");
   const [oems, setOems] = useState([]);
   const [productLines, setProductLines] = useState([]);
   const [partners, setPartners] = useState([]);
@@ -23,23 +23,25 @@ const AddCategoryPage = () => {
 
   const addOem = () => {
     setOems([...oems, oem]);
-    setOem('');
+    setOem("");
   };
 
   const addProductLine = () => {
     setProductLines([...productLines, productLine]);
-    setProductLine('');
+    setProductLine("");
   };
 
   const addPartner = () => {
     setPartners([...partners, partner]);
-    setPartner('');
+    setPartner("");
   };
 
   const exportToExcel = () => {
     const dataToExport = { oems, productLines, partners };
-    const blob = new Blob([JSON.stringify(dataToExport, null, 2)], { type: 'application/json' });
-    saveAs(blob, 'categories.json');
+    const blob = new Blob([JSON.stringify(dataToExport, null, 2)], {
+      type: "application/json",
+    });
+    saveAs(blob, "categories.json");
   };
 
   return (
@@ -53,7 +55,9 @@ const AddCategoryPage = () => {
           onChange={(e) => setOem(e.target.value)}
           placeholder="Enter OEM"
         />
-        <button className="add-button" onClick={addOem}>Add</button>
+        <button className="add-button" onClick={addOem}>
+          Add
+        </button>
       </div>
       <div className="form-group">
         <label>Enter Product Line:</label>
@@ -63,7 +67,9 @@ const AddCategoryPage = () => {
           onChange={(e) => setProductLine(e.target.value)}
           placeholder="Enter Product Line"
         />
-        <button className="add-button" onClick={addProductLine}>Add</button>
+        <button className="add-button" onClick={addProductLine}>
+          Add
+        </button>
       </div>
       <div className="form-group">
         <label>Enter Partner:</label>
@@ -73,7 +79,9 @@ const AddCategoryPage = () => {
           onChange={(e) => setPartner(e.target.value)}
           placeholder="Enter Partner"
         />
-        <button className="add-button" onClick={addPartner}>Add</button>
+        <button className="add-button" onClick={addPartner}>
+          Add
+        </button>
       </div>
 
       <h3>Available Categories</h3>
@@ -104,7 +112,9 @@ const AddCategoryPage = () => {
         </div>
       </div>
 
-      <button className="export-button" onClick={exportToExcel}>Export to Excel</button>
+      <button className="export-button" onClick={exportToExcel}>
+        Export to Excel
+      </button>
     </div>
   );
 };
