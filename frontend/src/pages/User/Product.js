@@ -6,12 +6,18 @@ import ExcelExport from "../../components/User/ExcelExport";
 import { FaEdit, FaFilter, FaTrash } from "react-icons/fa";
 import AddProduct from "../../components/User/AddProduct";
 import SearchBox from "../../components/User/SearchBox";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteProduct,
+  editProduct,
+} from "../../features/product/productSlice";
 
 export default function Product() {
   //pagination
   const itemsToShow = 5;
   const [currentItem, currentPage, setCurrentPage] = usePagination(itemsToShow);
+
+  const dispatch = useDispatch();
 
   const products = useSelector((state) => state.product);
 
@@ -140,10 +146,12 @@ export default function Product() {
                     </td>
                     <td className="p-3">{product.remark}</td>
                     <td className="p-3 flex justify-center gap-x-2">
-                      <button>
+                      <button onClick={() => dispatch(editProduct(product.id))}>
                         <FaEdit />
                       </button>
-                      <button>
+                      <button
+                        onClick={() => dispatch(deleteProduct(product.id))}
+                      >
                         <FaTrash />
                       </button>
                     </td>

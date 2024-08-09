@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import SearchBox from "../../components/User/SearchBox";
 import Button from "../../components/User/Button";
-import { FaFilter } from "react-icons/fa";
+import { FaEdit, FaFilter, FaTrash } from "react-icons/fa";
 import ExcelExport from "../../components/User/ExcelExport";
 // import clients from "../../data/client.json";
 import Pagination from "../../components/Pagination";
 import usePagination from "../../hooks/usePagination";
 import AddClient from "../../components/User/AddClient";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteClient, editClient } from "../../features/client/clientSlice";
 
 const Client = () => {
   const clients = useSelector((state) => state.client);
@@ -15,12 +16,14 @@ const Client = () => {
   const itemsToShow = 6;
   const [currentItem, currentPage, setCurrentPage] = usePagination(itemsToShow);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   // const [clients] = useState(clientsData);
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+  // const handleSearchChange = (e) => {
+  //   setSearchTerm(e.target.value);
+  // };
+
+  const dispatch = useDispatch();
 
   return (
     <div className="clients-container w-full h-full flex flex-col items-center p-6 bg-gray-100">
@@ -61,6 +64,9 @@ const Client = () => {
                     <option value="optionText3">Option Text 3</option>
                   </select>
                 </th>
+                <th scope="col" className="p-3">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +76,14 @@ const Client = () => {
                     <td className="p-3">{client.id}</td>
                     <td className="p-3">{client.partner_name}</td>
                     <td className="p-3">{client.partner_rep_name}</td>
+                    <td className="p-3">
+                      <button onClick={() => dispatch(editClient(client.id))}>
+                        <FaEdit />
+                      </button>
+                      <button onClick={() => dispatch(deleteClient(client.id))}>
+                        <FaTrash />
+                      </button>
+                    </td>
                   </tr>
                 ))
                 .slice(currentItem.start, currentItem.end)}

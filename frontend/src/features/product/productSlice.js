@@ -9,11 +9,16 @@ export const productSlice = createSlice({
       //   console.log(action);
       state.push(action.payload);
     },
-    deleteProduct: (state) => {
-      state.value -= 1;
+    deleteProduct: (state, action) => {
+      console.log(action);
+      return state.filter((product) => product.id !== action.payload);
     },
     editProduct: (state, action) => {
-      state.value += action.payload;
+      console.log(action);
+      let updatableProduct = state.filter(
+        (product) => product.id === action.payload
+      );
+      console.log(updatableProduct.entry_date);
     },
   },
 });

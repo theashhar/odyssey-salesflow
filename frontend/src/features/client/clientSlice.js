@@ -9,8 +9,9 @@ export const clientSlice = createSlice({
       //   console.log(action);
       state.push(action.payload);
     },
-    deleteClient: (state) => {
-      state.value -= 1;
+    deleteClient: (state, action) => {
+      console.log(action);
+      return state.filter((client) => client.id !== action.payload);
     },
     editClient: (state, action) => {
       state.value += action.payload;
