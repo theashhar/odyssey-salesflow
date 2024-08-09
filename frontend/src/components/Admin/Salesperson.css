@@ -1,0 +1,62 @@
+/* src/components/Salesperson.css */
+.salesperson-card {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 100%; /* Full width for the card */
+  }
+  
+  .salesperson-row {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+  }
+  
+  .header {
+    font-weight: bold;
+    background-color: #E1E1E1;
+  }
+  
+  .header-item {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .data {
+    background-color: #F9F9F9;
+  }
+  
+  .data-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6C5B7B;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+  }
+  
+  .actions button:hover {
+    color: #C06C84;
+  }
+  
