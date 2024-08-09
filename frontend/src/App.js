@@ -7,6 +7,7 @@ import AdminClient from './components/Admin/AdminClient/AdminClient';
 import Report from './components/Admin/Reports/Report';
 
 import "./App.css";
+import AddCategoryPage from './components/Admin/Category/Addcategory';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/clients" element={<AdminClient />} />
           <Route path="/reports" element={<Report/>}/>
+          <Route path="/add-category" element={<AddCategoryPage />} />
          
           {/* Add other routes as needed */}
         </Routes>

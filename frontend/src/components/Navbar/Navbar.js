@@ -1,6 +1,6 @@
 // src/components/Navbar/Navbar.js
 import React from 'react';
-import { FaHome, FaUser, FaChartBar, FaBriefcase, FaBox, FaClipboardList } from 'react-icons/fa';
+import { FaHome, FaChartBar, FaBriefcase, FaBox, FaClipboardList } from 'react-icons/fa';
 import './Navbar.css';
 import { NavLink } from 'react-router-dom';
 
@@ -26,11 +26,11 @@ const Navbar = () => {
             <FaBox /> Products
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/users" activeClassName="active-link">
             <FaUser /> Users
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/reports" activeClassName="active-link">
             <FaChartBar /> Analytics/Reports
