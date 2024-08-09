@@ -7,17 +7,32 @@ import Report from "./components/Admin/Reports/Report";
 import AddCategoryPage from "./components/Admin/Category/Addcategory";
 import AdminLayout from "./layout/AdminLayout";
 
+import UserLayout from "./layout/UserLayout";
+import UserDashboard from "./pages/User/UserDashboard";
+import Analytics from "./pages/User/Analytics";
+import Product from "./pages/User/Product";
+import Client from "./pages/User/Client";
+import Users from "./pages/User/Users";
+
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route exact path="/" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="/clients" element={<AdminClient />} />
-          <Route path="/reports" element={<Report />} />
-          <Route path="/add-category" element={<AddCategoryPage />} />
+          <Route path="product" element={<Product />} />
+          <Route path="analytics" element={<Report />} />
+          <Route path="client" element={<AdminClient />} />
+          <Route path="profile" element={<Users type="admin" />} />
+          <Route path="add-category" element={<AddCategoryPage />} />
         </Route>
-
+        <Route exact path="/user" element={<UserLayout />}>
+          <Route index element={<UserDashboard />} />
+          <Route path="product" element={<Product />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="client" element={<Client />} />
+          <Route path="profile" element={<Users type="user" />} />
+        </Route>
         {/* Add other routes as needed */}
       </Routes>
     </Router>
