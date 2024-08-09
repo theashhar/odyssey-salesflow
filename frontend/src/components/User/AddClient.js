@@ -3,6 +3,7 @@ import Input, { Select } from "./Input";
 import Button from "./Button";
 import { addClient } from "../../features/client/clientSlice";
 import { useDispatch } from "react-redux";
+import { customAlphabet } from "nanoid";
 
 const initialValues = {
   sales_person: "Salesperson 1",
@@ -17,7 +18,9 @@ export default function AddClient() {
     initialValues: initialValues,
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
-      dispatch(addClient({ id: "1", ...values }));
+      const numberic = "1234abcd";
+      const nanoid = customAlphabet(numberic, 3);
+      dispatch(addClient({ id: `#${nanoid()}`, ...values }));
       resetForm();
     },
   });

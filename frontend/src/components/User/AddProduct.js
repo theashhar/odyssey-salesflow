@@ -1,3 +1,4 @@
+import { customAlphabet } from "nanoid";
 import { addProduct } from "../../features/product/productSlice";
 import Button from "./Button";
 import Input, { Select } from "./Input";
@@ -41,11 +42,14 @@ const initialValues = {
 export default function AddProduct() {
   const dispatch = useDispatch();
 
+  //form functionality
   const { values, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
-      dispatch(addProduct({ id: "1", ...values }));
+      const numberic = "1234abcd";
+      const nanoid = customAlphabet(numberic, 3);
+      dispatch(addProduct({ id: `#${nanoid()}`, ...values }));
       resetForm();
     },
   });

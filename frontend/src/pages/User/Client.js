@@ -11,8 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteClient, editClient } from "../../features/client/clientSlice";
 
 const Client = () => {
+  const dispatch = useDispatch();
+
   const clients = useSelector((state) => state.client);
 
+  //product pagination
   const itemsToShow = 6;
   const [currentItem, currentPage, setCurrentPage] = usePagination(itemsToShow);
 
@@ -22,8 +25,6 @@ const Client = () => {
   // const handleSearchChange = (e) => {
   //   setSearchTerm(e.target.value);
   // };
-
-  const dispatch = useDispatch();
 
   return (
     <div className="clients-container w-full h-full flex flex-col items-center p-6 bg-gray-100">
@@ -76,7 +77,7 @@ const Client = () => {
                     <td className="p-3">{client.id}</td>
                     <td className="p-3">{client.partner_name}</td>
                     <td className="p-3">{client.partner_rep_name}</td>
-                    <td className="p-3">
+                    <td className="p-3 flex gap-x-3">
                       <button onClick={() => dispatch(editClient(client.id))}>
                         <FaEdit />
                       </button>

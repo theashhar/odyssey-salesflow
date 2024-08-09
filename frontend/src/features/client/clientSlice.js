@@ -14,7 +14,7 @@ export const clientSlice = createSlice({
       return state.filter((client) => client.id !== action.payload);
     },
     editClient: (state, action) => {
-      state.value += action.payload;
+      console.log(action);
     },
   },
 });
