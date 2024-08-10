@@ -1,7 +1,7 @@
 import React from "react";
 import Salesperson from "./Salesperson";
 import salespeopleData from "../../data/salesperson.json";
-import "./AdminSection.css";
+import styles from "./AdminSection.module.css";
 import { FaUser } from "react-icons/fa";
 import { FaPlus, FaFileExcel } from "react-icons/fa";
 
@@ -32,13 +32,13 @@ const AdminSection = () => {
   };
 
   return (
-    <div className="admin-section">
-      <div className="top-bar">
-        <div className="profile">
+    <div className={styles.admin_section}>
+      <div className={styles.top_bar}>
+        <div className={styles.profile}>
           <FaUser size={40} color="#6c5b7b" /> {/* Admin/User Icon */}
-          <div className="name">Trail Admin</div>
+          <div className={styles.name}>Trail Admin</div>
         </div>
-        <div className="actions">
+        <div className={styles.actions}>
           <button onClick={handleAddNew} title="Add New">
             <FaPlus /> Add New
           </button>
@@ -47,17 +47,17 @@ const AdminSection = () => {
           </button>
         </div>
       </div>
-      <div className="salespeople-header">
+      <div className={styles.salespeople_header}>
         <h3>Salespeople</h3>
       </div>
-      <div className="salespeople-list">
-        <div className="salespeople-table">
-          <div className="salesperson-row header">
-            <div className="header-item">Profile Pic</div>
-            <div className="header-item">Name</div>
-            <div className="header-item">ID</div>
-            <div className="header-item">Company Assigned</div>
-            <div className="header-item">Actions</div>
+      <div className={styles.salespeople_list}>
+        <div className={styles.salespeople_table}>
+          <div className={`${styles.salesperson_row} ${styles.header}`}>
+            <div className={styles.header_item}>Profile Pic</div>
+            <div className={styles.header_item}>Name</div>
+            <div className={styles.header_item}>ID</div>
+            <div className={styles.header_item}>Company Assigned</div>
+            <div className={styles.header_item}>Actions</div>
           </div>
           {salespeopleData.length > 0 ? (
             salespeopleData.map((person) => (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AdminClient.css";
+import styles from "./AdminClient.module.css";
 import clientsData from "../../../data/adminclient.json";
 
 const ClientsPage = () => {
@@ -16,10 +16,10 @@ const ClientsPage = () => {
   };
 
   return (
-    <div className="clients-page">
-      <div className="top-section">
+    <div className={styles.clients_page}>
+      <div className={styles.top_section}>
         <h2>SalesPerson Clients</h2>
-        <div className="search-dropdown">
+        <div className={styles.search_dropdown}>
           <input
             type="text"
             placeholder="Search clients..."
@@ -37,7 +37,7 @@ const ClientsPage = () => {
           </select>
         </div>
       </div>
-      <div className="clients-list">
+      <div className={styles.clients_list}>
         <table>
           <thead>
             <tr>

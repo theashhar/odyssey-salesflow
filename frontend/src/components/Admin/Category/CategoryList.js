@@ -1,9 +1,9 @@
-import React from 'react';
-import './CategoryList.css';
+import React from "react";
+import styles from "./CategoryList.module.css";
 
 const CategoryList = ({ title, items }) => {
   return (
-    <div className="category-list">
+    <div className={styles.category_list}>
       <h2>{title}</h2>
       <ul>
         {items.map((item, index) => (

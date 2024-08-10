@@ -1,7 +1,7 @@
 // src/components/AnalyticsPage.js
 import React, { useState } from "react";
 import AnalyticsChart from "./AnalyticsChart";
-import "./AnalyticsPage.css";
+import styles from "./AnalyticsPage.module.css";
 
 // Import JSON data directly
 import monthsData from "../../../data/Analytics/months.json";
@@ -16,12 +16,12 @@ const AnalyticsPage = () => {
   const data = chartData[month] || { labels: [], datasets: [] };
 
   return (
-    <div className="analytics-page">
-      <header className="page-header">
+    <div className={styles.analytics_page}>
+      <header className={styles.page_header}>
         <h1>Analytics Dashboard</h1>
         <p>View and analyze your performance metrics</p>
       </header>
-      <div className="filters">
+      <div className={styles.filters}>
         <select value={month} onChange={(e) => setMonth(e.target.value)}>
           {monthsData.map((m, index) => (
             <option key={index} value={m}>
@@ -38,7 +38,7 @@ const AnalyticsPage = () => {
           ))}
         </select>
       </div>
-      <div className="stats">
+      <div className={styles.stats}>
         <h2>
           Total Quantity Sold: <span>100</span>
         </h2>
@@ -46,7 +46,7 @@ const AnalyticsPage = () => {
           Leads Success: <span>80%</span>
         </h3>
       </div>
-      <div className="chart-container">
+      <div className={styles.chart_container}>
         <AnalyticsChart data={data} />
       </div>
     </div>

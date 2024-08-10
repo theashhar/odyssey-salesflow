@@ -1,6 +1,6 @@
 // src/components/AddCategoryPage.js
 import React, { useState, useEffect } from "react";
-import "./AddCategoryPage.css";
+import styles from "./AddCategoryPage.module.css";
 import { saveAs } from "file-saver";
 import oemData from "../../../data/category/oemData.json";
 import productLineData from "../../../data/category/productLineData.json";
@@ -45,9 +45,9 @@ const AddCategoryPage = () => {
   };
 
   return (
-    <div className="add-category-page">
-      <h2 className="title">Add Category</h2>
-      <div className="form-group">
+    <div className={styles.add_category_page}>
+      <h2 className={styles.title}>Add Category</h2>
+      <div className={styles.form_group}>
         <label>Enter OEM:</label>
         <input
           type="text"
@@ -55,11 +55,11 @@ const AddCategoryPage = () => {
           onChange={(e) => setOem(e.target.value)}
           placeholder="Enter OEM"
         />
-        <button className="add-button" onClick={addOem}>
+        <button className={styles.add_button} onClick={addOem}>
           Add
         </button>
       </div>
-      <div className="form-group">
+      <div className={styles.form_group}>
         <label>Enter Product Line:</label>
         <input
           type="text"
@@ -67,11 +67,11 @@ const AddCategoryPage = () => {
           onChange={(e) => setProductLine(e.target.value)}
           placeholder="Enter Product Line"
         />
-        <button className="add-button" onClick={addProductLine}>
+        <button className={styles.add_button} onClick={addProductLine}>
           Add
         </button>
       </div>
-      <div className="form-group">
+      <div className={styles.form_group}>
         <label>Enter Partner:</label>
         <input
           type="text"
@@ -79,14 +79,14 @@ const AddCategoryPage = () => {
           onChange={(e) => setPartner(e.target.value)}
           placeholder="Enter Partner"
         />
-        <button className="add-button" onClick={addPartner}>
+        <button className={styles.add_button} onClick={addPartner}>
           Add
         </button>
       </div>
 
       <h3>Available Categories</h3>
-      <div className="available-categories">
-        <div className="category-list">
+      <div className={styles.available_categories}>
+        <div className={styles.category_list}>
           <h4>OEMs</h4>
           <ul>
             {oems.map((item, index) => (
@@ -94,7 +94,7 @@ const AddCategoryPage = () => {
             ))}
           </ul>
         </div>
-        <div className="category-list">
+        <div className={styles.category_list}>
           <h4>Product Lines</h4>
           <ul>
             {productLines.map((item, index) => (
@@ -102,7 +102,7 @@ const AddCategoryPage = () => {
             ))}
           </ul>
         </div>
-        <div className="category-list">
+        <div className={styles.category_list}>
           <h4>Partners</h4>
           <ul>
             {partners.map((item, index) => (
@@ -112,7 +112,7 @@ const AddCategoryPage = () => {
         </div>
       </div>
 
-      <button className="export-button" onClick={exportToExcel}>
+      <button className={styles.export_button} onClick={exportToExcel}>
         Export to Excel
       </button>
     </div>

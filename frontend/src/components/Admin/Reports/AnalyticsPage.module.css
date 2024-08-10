@@ -1,0 +1,110 @@
+/* src/components/AnalyticsPage.css */
+.analytics_page {
+  padding: 20px;
+  margin-left: 250px; /* Adjust based on Navbar width */
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-left: 4rem;
+  padding-top: 2rem;
+}
+
+.page_header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.page_header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.page_header p {
+  font-size: 18px;
+  color: #495057;
+  margin: 0;
+}
+
+.filters {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.filters select {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 16px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filters select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.stats {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.stats h2,
+.stats h3 {
+  margin: 10px 0;
+}
+
+.stats h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.stats h3 {
+  font-size: 20px;
+  color: #495057;
+}
+
+.stats span {
+  color: #007bff;
+  font-weight: 700;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#myChart {
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters select {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+  }
+
+  #myChart {
+    height: 400px;
+  }
+}

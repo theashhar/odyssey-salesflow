@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
 import Header from "../components/Header";
-import UserNavbar from "../components/User/UserNavbar";
+import UserNavbar from "../components/UserNavbar";
 
 export default function AdminLayout() {
   return (
@@ -11,7 +10,7 @@ export default function AdminLayout() {
         <Header username="admin" />
         {/* sidebar */}
         <div className="col-start-1 h-[calc(100vh-3.5rem)] col-span-1 relative flex w-full max-w-[20rem] flex-col bg-primary text-white bg-clip-border p-4">
-          <UserNavbar />
+          <UserNavbar type="admin" />
         </div>
         <div className="col-span-5">
           <Outlet />

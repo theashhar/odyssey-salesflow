@@ -1,0 +1,17 @@
+.category_list {
+  margin-bottom: 20px;
+}
+
+.category_list h2 {
+  margin-bottom: 10px;
+}
+
+.category_list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.category_list li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}

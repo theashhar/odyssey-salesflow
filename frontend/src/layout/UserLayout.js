@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
-import UserNavbar from "../components/User/UserNavbar";
+import UserNavbar from "../components/UserNavbar";
 
 export default function UserLayout() {
   const user = useSelector((state) => state.user);

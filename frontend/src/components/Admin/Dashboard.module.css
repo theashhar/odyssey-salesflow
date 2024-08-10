@@ -1,0 +1,27 @@
+/* src/components/Dashboard.css */
+.dashboard {
+  display: flex;
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+}
+.main_content {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+}
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.card h3 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: #333333;
+}
+.card p {
+  font-size: 1.1rem;
+  color: #666666;
+}

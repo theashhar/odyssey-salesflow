@@ -13,12 +13,14 @@ import Analytics from "./pages/User/Analytics";
 import Product from "./pages/User/Product";
 import Client from "./pages/User/Client";
 import Users from "./pages/User/Users";
+import LoginPage from "./pages/Login/LoginPage";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<AdminLayout />}>
+        <Route exact path="/" element={<LoginPage />} />
+        <Route exact path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="product" element={<Product />} />
           <Route path="analytics" element={<Report />} />
@@ -27,7 +29,7 @@ const App = () => {
           <Route path="add-category" element={<AddCategoryPage />} />
         </Route>
         <Route exact path="/user" element={<UserLayout />}>
-          <Route index element={<UserDashboard />} />
+          <Route index element={<Product />} />
           <Route path="product" element={<Product />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="client" element={<Client />} />

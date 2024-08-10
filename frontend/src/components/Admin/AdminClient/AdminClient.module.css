@@ -1,0 +1,81 @@
+/* src/components/Admin/Clients/ClientsPage.css */
+.clients_page {
+  padding: 20px;
+  margin-left: 250px; /* Adjust based on Navbar width */
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-left: 4rem;
+  padding-top: 2rem;
+}
+
+.top_section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.top_section h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.search_dropdown {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.search_dropdown input,
+.search_dropdown select {
+  padding: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.clients_list {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow-x: auto; /* Handle horizontal overflow */
+}
+
+.clients_list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.clients_list th,
+.clients_list td {
+  padding: 12px; /* Increased padding */
+  border: 1px solid #e1e1e1;
+  text-align: left;
+}
+
+.clients_list th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.client_list button {
+  background-color: #6c5b7b;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px; /* Adjusted padding */
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.clients_list button:hover {
+  background-color: #c06c84;
+}
