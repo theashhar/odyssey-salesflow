@@ -11,11 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteClient, editClient } from "../../features/client/clientSlice";
 
 const Client = () => {
+  //redux state fetch
   const dispatch = useDispatch();
-
   const clients = useSelector((state) => state.client);
 
-  //product pagination
+  //client pagination
   const itemsToShow = 6;
   const [currentItem, currentPage, setCurrentPage] = usePagination(itemsToShow);
 
@@ -28,6 +28,7 @@ const Client = () => {
 
   return (
     <div className="clients-container w-full h-full flex flex-col items-center p-6 bg-gray-100">
+      {/* add client section */}
       <div className="relative w-full mb-3">
         <h1 className="text-2xl mb-6">Add Client</h1>
         <div className="flex gap-x-3">
@@ -35,6 +36,7 @@ const Client = () => {
         </div>
       </div>
       <div className="w-full h-full flex flex-col p-4 bg-white grow">
+        {/* table topbar */}
         <div className="flex items-center gap-x-6">
           <h2 className="flex-1 text-lg font-medium text-gray-800">Clients</h2>
           <form className="searchbar">
@@ -45,6 +47,7 @@ const Client = () => {
           </Button>
           <ExcelExport excelData={clients} fileName={"clients"} />
         </div>
+        {/* client table */}
         <div className="relative overflow-x-auto mt-4 grow">
           <table className="w-full text-sm text-gray-700 text-left">
             <thead className="text-xs text-gray-900 uppercase bg-gray-100">
@@ -72,6 +75,7 @@ const Client = () => {
             </thead>
             <tbody>
               {clients
+                .filter((client) => client.salesperson === "Salesperson 1")
                 .map((client, index) => (
                   <tr key={index} className="bg-white border-b">
                     <td className="p-3">{client.id}</td>
@@ -91,6 +95,7 @@ const Client = () => {
             </tbody>
           </table>
         </div>
+        {/* pagination */}
         <Pagination
           type="button"
           totalItems={clients.length}

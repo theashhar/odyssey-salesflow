@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styles from "./AdminClient.module.css";
-import clientsData from "../../../data/adminclient.json";
+import { useSelector } from "react-redux";
+// import clientsData from "../../../data/adminclient.json";
 
 const ClientsPage = () => {
+  const clients = useSelector((state) => state.client);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSalesPerson, setSelectedSalesPerson] = useState("");
-  const [clients] = useState(clientsData);
+  // const [clients] = useState(clientsData);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -44,7 +47,7 @@ const ClientsPage = () => {
               <th>Name</th>
               <th>ID</th>
               <th>Partner Name</th>
-              <th>Assigned Order</th>
+              <th>Assigned Sales Rep</th>
               <th>Export</th>
             </tr>
           </thead>
@@ -52,10 +55,10 @@ const ClientsPage = () => {
             {clients.length > 0 ? (
               clients.map((client) => (
                 <tr key={client.id}>
-                  <td>{client.name}</td>
+                  <td>{client.salesperson}</td>
                   <td>{client.id}</td>
-                  <td>{client.partnerName}</td>
-                  <td>{client.assignedOrder}</td>
+                  <td>{client.partner_name}</td>
+                  <td>{client.partner_rep_name}</td>
                   <td>
                     <button>Export</button>
                   </td>

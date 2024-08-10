@@ -1,4 +1,4 @@
-import Profile from "../../components/User/Profile";
+import Profile from "../../components/Profile";
 
 export default function Users({ type }) {
   return (

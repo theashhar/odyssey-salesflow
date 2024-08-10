@@ -3,7 +3,7 @@ import usePagination from "../../hooks/usePagination";
 import Pagination from "../../components/Pagination";
 import ExcelExport from "../../components/User/ExcelExport";
 import { FaEdit, FaFilter, FaTrash } from "react-icons/fa";
-import AddProduct from "../../components/User/AddProduct";
+import AddProduct from "../../components/AddProduct";
 import SearchBox from "../../components/User/SearchBox";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,8 +17,8 @@ import productNoData from "../../data/productNo.json";
 import productlineData from "../../data/productline.json";
 import { useState } from "react";
 
-export default function Product() {
-  //pagination
+export default function Product({ type }) {
+  //product pagination
   const itemsToShow = 5;
   const [currentItem, currentPage, setCurrentPage] = usePagination(itemsToShow);
 
@@ -32,6 +32,7 @@ export default function Product() {
   const [oem, setOem] = useState(null);
   const [status, setStatus] = useState(null);
 
+  //product line filter
   const selectProductLine = (event) => {
     // console.log(event.target.value);
     let newValue =
@@ -40,6 +41,8 @@ export default function Product() {
         : event.target.value.toLowerCase();
     setProductLine(newValue);
   };
+
+  //product no. filter
   const selectProductNo = (event) => {
     // console.log(event.target.value);
     let newValue =
@@ -48,6 +51,8 @@ export default function Product() {
         : event.target.value.toLowerCase();
     setProductNo(newValue);
   };
+
+  //oem filter
   const selectOEM = (event) => {
     // console.log(event.target.value);
     let newValue =
@@ -56,6 +61,8 @@ export default function Product() {
         : event.target.value.toLowerCase();
     setOem(newValue);
   };
+
+  //lead status filter
   const selectStatus = (event) => {
     // console.log(event.target.value);
     let newValue =
@@ -67,13 +74,15 @@ export default function Product() {
 
   return (
     <div className="product-container w-full h-full flex flex-col items-center p-6 bg-gray-100">
+      {/* add product section */}
       <div className="relative w-full mb-3">
         <h1 className="text-2xl mb-6">Add Product Line</h1>
         <div className="flex gap-x-3">
-          <AddProduct />
+          <AddProduct type={type} />
         </div>
       </div>
       <div className="w-full h-full flex flex-col p-4 bg-white grow">
+        {/* table topbar */}
         <div className="flex items-center gap-x-6">
           <h2 className="flex-1 text-lg font-medium text-gray-800">Products</h2>
           <form className="searchbar">
@@ -84,6 +93,7 @@ export default function Product() {
           </Button>
           <ExcelExport excelData={products} fileName={"products"} />
         </div>
+        {/* product table */}
         <div className="relative overflow-x-auto mt-4 grow">
           <table className="w-full text-sm text-gray-700 text-left">
             <thead className="text-xs text-gray-900 uppercase bg-gray-100">
@@ -247,6 +257,7 @@ export default function Product() {
             </tbody>
           </table>
         </div>
+        {/* pagination */}
         <Pagination
           type="button"
           totalItems={products.length}

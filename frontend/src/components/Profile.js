@@ -1,14 +1,18 @@
-import Button from "./Button";
-import Input from "./Input";
-import user_avatar from "../../images/user_avatar.jpg";
+import Button from "./User/Button";
+import Input from "./User/Input";
+import user_avatar from "../images/user_avatar.jpg";
 import { useFormik } from "formik";
-import { editUser } from "../../features/user-profile/userSlice";
+import { editUser } from "../features/user-profile/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const initialValues = {
+const userInitialValues = {
   username: "Salesperson 1",
   email: "salesperson1@gmail.com",
   phone: "+918975648576",
+};
+const adminInitialValues = {
+  email: "admin1@gmail.com",
+  password: "adminpass",
 };
 
 export default function Profile({ type }) {
@@ -16,7 +20,7 @@ export default function Profile({ type }) {
   const user = useSelector((state) => state.user);
 
   const { values, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: initialValues,
+    initialValues: type === "admin" ? adminInitialValues : userInitialValues,
     onSubmit: (values) => {
       // console.log(values);
       dispatch(editUser(values));
@@ -37,14 +41,16 @@ export default function Profile({ type }) {
           <h1>{type === "admin" ? "Admin" : `user : ${user.username}`}</h1>
           <span>{!type === "admin" && "id : #user231"}</span>
         </div>
-        <Input
-          type="text"
-          label="name"
-          name="username"
-          value={values.username}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
+        {type === "user" && (
+          <Input
+            type="text"
+            label="name"
+            name="username"
+            value={values.username}
+            onHandleBlur={handleBlur}
+            onHandleChange={handleChange}
+          />
+        )}
         <Input
           type="email"
           label="email"
@@ -53,14 +59,25 @@ export default function Profile({ type }) {
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
-        <Input
-          type="text"
-          label="phone number"
-          name="ph_no"
-          value={values.phone}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
+        {type === "user" ? (
+          <Input
+            type="text"
+            label="phone number"
+            name="ph_no"
+            value={values.phone}
+            onHandleBlur={handleBlur}
+            onHandleChange={handleChange}
+          />
+        ) : (
+          <Input
+            type="password"
+            label="password"
+            name="password"
+            value={values.password}
+            onHandleBlur={handleBlur}
+            onHandleChange={handleChange}
+          />
+        )}
       </div>
       <Button title="update" type="submit" />
     </form>

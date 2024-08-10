@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { customAlphabet } from "nanoid";
 
 const initialValues = {
-  sales_person: "Salesperson 1",
+  salesperson: "Salesperson 1",
   partner_name: "",
   partner_rep_name: "",
 };
@@ -32,7 +32,7 @@ export default function AddClient() {
           label="sales person"
           name="sales_person"
           selected
-          value={values.sales_person}
+          value={values.salesperson}
         />
         <Input
           type="text"

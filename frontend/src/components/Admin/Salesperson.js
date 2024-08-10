@@ -23,13 +23,13 @@ const Salesperson = ({
       <div className={styles.data_item}>{id}</div>
       <div className={styles.data_item}>{company}</div>
       <div className={`${styles.data_item} ${styles.actions}`}>
-        <button onClick={() => onUpdate(name)} title="Update Details">
+        <button onClick={() => onUpdate(id)} title="Update Details">
           <FaEdit />
         </button>
-        <button onClick={() => onRemove(name)} title="Remove">
+        <button onClick={() => onRemove(id)} title="Remove">
           <FaTrash />
         </button>
-        <button onClick={() => onRoleChange(name)} title="Change Role">
+        <button onClick={() => onRoleChange(id)} title="Change Role">
           <FaUserCog />
         </button>
       </div>

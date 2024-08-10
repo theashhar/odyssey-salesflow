@@ -9,6 +9,7 @@ import { addSalesperson } from "../../features/salesperson/salespersonSlice";
 const initialValues = {
   name: "",
   id: "",
+  password: "",
   company: "",
 };
 
@@ -45,13 +46,24 @@ export default function AddSalesperson() {
         />
         <Input
           type="text"
-          label="assigned company"
+          label="password"
+          name="password"
+          value={values.password}
+          onHandleBlur={handleBlur}
+          onHandleChange={handleChange}
+        />
+      </div>
+      <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
+        <Input
+          type="text"
+          label="assign company"
           name="company"
           value={values.company}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
       </div>
+
       <Button title="add" type="submit" />
     </form>
   );

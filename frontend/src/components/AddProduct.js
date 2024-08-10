@@ -1,14 +1,15 @@
 import { customAlphabet } from "nanoid";
-import { addProduct } from "../../features/product/productSlice";
-import Button from "./Button";
-import Input, { Select } from "./Input";
+import { addProduct } from "../features/product/productSlice";
+import Button from "./User/Button";
+import Input, { Select } from "./User/Input";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 
 //data
-import productLineData from "../../data/productline.json";
-import productNoData from "../../data/productNo.json";
-import oemData from "../../data/oemData.json";
+import productLineData from "../data/productline.json";
+import productNoData from "../data/productNo.json";
+import oemData from "../data/oemData.json";
+import salespersonData from "../data/salesperson.json";
 
 const leadStatus = ["success", "ongoing", "failed"];
 
@@ -28,7 +29,7 @@ const initialValues = {
   remark: "",
 };
 
-export default function AddProduct() {
+export default function AddProduct({ type }) {
   const dispatch = useDispatch();
 
   //form functionality
@@ -43,15 +44,29 @@ export default function AddProduct() {
     },
   });
 
+  const salespersonArray = salespersonData.map((sp, index) => sp.name);
+  console.log(salespersonArray);
+
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
-        <Select
-          label="odessey sales person"
-          name="sales_person"
-          selected
-          value={values.sales_person}
-        />
+        {type === "admin" ? (
+          <Select
+            label="odessey sales person"
+            name="sales_person"
+            value={values.sales_person}
+            options={salespersonArray}
+            onHandleBlur={handleBlur}
+            onHandleChange={handleChange}
+          />
+        ) : (
+          <Select
+            label="odessey sales person"
+            name="sales_person"
+            selected
+            value={values.sales_person}
+          />
+        )}
       </div>
       <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
         <Input

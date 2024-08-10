@@ -5,35 +5,28 @@ import styles from "./AdminSection.module.css";
 import { FaUser } from "react-icons/fa";
 import { FaPlus, FaFileExcel } from "react-icons/fa";
 import AddSalesperson from "./AddSalesperson";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteSalesperson } from "../../features/salesperson/salespersonSlice";
+import ExcelExport from "../User/ExcelExport";
 
 const AdminSection = () => {
+  const dispatch = useDispatch();
   const salespeople = useSelector((state) => state.salesperson);
-  console.log(salespeople);
+  // console.log(salespeople);
 
   const handleUpdate = (name) => {
     console.log("Update details for:", name);
     // Implement update logic
   };
 
-  const handleRemove = (name) => {
-    console.log("Remove salesperson:", name);
-    // Implement remove logic
+  const handleRemove = (id) => {
+    console.log("Remove salesperson:", id);
+    dispatch(deleteSalesperson(id));
   };
 
   const handleRoleChange = (name) => {
     console.log("Change role for:", name);
     // Implement role change logic
-  };
-
-  const handleAddNew = () => {
-    console.log("Add new salesperson");
-    // Implement add new logic
-  };
-
-  const handleExport = () => {
-    console.log("Export to Excel");
-    // Implement export logic
   };
 
   return (
@@ -48,11 +41,7 @@ const AdminSection = () => {
       </div>
       <div className={styles.salespeople_header}>
         <h3>Salespeople</h3>
-        <div className={styles.actions}>
-          <button onClick={handleExport} title="Export to Excel">
-            <FaFileExcel /> Export
-          </button>
-        </div>
+        <ExcelExport excelData={salespeople} fileName={"salesperson"} />
       </div>
       <div className={styles.salespeople_list}>
         <div className={styles.salespeople_table}>
