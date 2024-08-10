@@ -35,25 +35,33 @@ export default function Product() {
   const selectProductLine = (event) => {
     // console.log(event.target.value);
     let newValue =
-      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+      event.target.value.toLowerCase() === "all"
+        ? null
+        : event.target.value.toLowerCase();
     setProductLine(newValue);
   };
   const selectProductNo = (event) => {
     // console.log(event.target.value);
     let newValue =
-      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+      event.target.value.toLowerCase() === "all"
+        ? null
+        : event.target.value.toLowerCase();
     setProductNo(newValue);
   };
   const selectOEM = (event) => {
     // console.log(event.target.value);
     let newValue =
-      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+      event.target.value.toLowerCase() === "all"
+        ? null
+        : event.target.value.toLowerCase();
     setOem(newValue);
   };
   const selectStatus = (event) => {
     // console.log(event.target.value);
     let newValue =
-      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+      event.target.value.toLowerCase() === "all"
+        ? null
+        : event.target.value.toLowerCase();
     setStatus(newValue);
   };
 
