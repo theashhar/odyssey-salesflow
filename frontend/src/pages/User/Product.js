@@ -1,5 +1,4 @@
 import Button from "../../components/User/Button";
-// import products from "../../data/products.json";
 import usePagination from "../../hooks/usePagination";
 import Pagination from "../../components/Pagination";
 import ExcelExport from "../../components/User/ExcelExport";
@@ -12,14 +11,51 @@ import {
   editProduct,
 } from "../../features/product/productSlice";
 
+//data
+import oemData from "../../data/oemData.json";
+import productNoData from "../../data/productNo.json";
+import productlineData from "../../data/productline.json";
+import { useState } from "react";
+
 export default function Product() {
   //pagination
   const itemsToShow = 5;
   const [currentItem, currentPage, setCurrentPage] = usePagination(itemsToShow);
 
+  //redux state fetch
   const dispatch = useDispatch();
-
   const products = useSelector((state) => state.product);
+
+  //filter
+  const [productLine, setProductLine] = useState(null);
+  const [productNo, setProductNo] = useState(null);
+  const [oem, setOem] = useState(null);
+  const [status, setStatus] = useState(null);
+
+  const selectProductLine = (event) => {
+    // console.log(event.target.value);
+    let newValue =
+      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+    setProductLine(newValue);
+  };
+  const selectProductNo = (event) => {
+    // console.log(event.target.value);
+    let newValue =
+      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+    setProductNo(newValue);
+  };
+  const selectOEM = (event) => {
+    // console.log(event.target.value);
+    let newValue =
+      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+    setOem(newValue);
+  };
+  const selectStatus = (event) => {
+    // console.log(event.target.value);
+    let newValue =
+      event.target.value.toLowerCase() === "all" ? null : event.target.value;
+    setStatus(newValue);
+  };
 
   return (
     <div className="product-container w-full h-full flex flex-col items-center p-6 bg-gray-100">
@@ -60,33 +96,51 @@ export default function Product() {
                   Partner rep name
                 </th>
                 <th scope="col" className="p-2">
-                  <select className="uppercase bg-transparent">
+                  <select
+                    className="oem uppercase bg-transparent"
+                    onChange={selectOEM}
+                  >
                     <option value="" disabled selected>
                       OEM
                     </option>
-                    <option value="optionText1">Option Text 1</option>
-                    <option value="optionText2">Option Text 2</option>
-                    <option value="optionText3">Option Text 3</option>
+                    <option value={null}>All</option>
+                    {oemData.map((oem, index) => (
+                      <option key={index} value={oem}>
+                        {oem}
+                      </option>
+                    ))}
                   </select>
                 </th>
                 <th scope="col" className="p-2">
-                  <select className="uppercase bg-transparent">
+                  <select
+                    className="productLine uppercase bg-transparent"
+                    onChange={selectProductLine}
+                  >
                     <option value="" disabled selected>
                       Product Line
                     </option>
-                    <option value="optionText1">Option Text 1</option>
-                    <option value="optionText2">Option Text 2</option>
-                    <option value="optionText3">Option Text 3</option>
+                    <option value={null}>All</option>
+                    {productlineData.map((productline, index) => (
+                      <option key={index} value={productline}>
+                        {productline}
+                      </option>
+                    ))}
                   </select>
                 </th>
                 <th scope="col" className="p-2">
-                  <select className="uppercase bg-transparent">
+                  <select
+                    className="productNo uppercase bg-transparent"
+                    onChange={selectProductNo}
+                  >
                     <option value="" disabled selected>
                       Product No.
                     </option>
-                    <option value="optionText1">Option Text 1</option>
-                    <option value="optionText2">Option Text 2</option>
-                    <option value="optionText3">Option Text 3</option>
+                    <option value={null}>All</option>
+                    {productNoData.map((productNo, index) => (
+                      <option key={index} value={productNo}>
+                        {productNo}
+                      </option>
+                    ))}
                   </select>
                 </th>
                 <th scope="col" className="p-2">
@@ -99,13 +153,17 @@ export default function Product() {
                   Follow-up Date
                 </th>
                 <th scope="col" className="p-2">
-                  <select className="uppercase bg-transparent">
+                  <select
+                    className="status uppercase bg-transparent"
+                    onChange={selectStatus}
+                  >
                     <option value="" disabled selected>
                       Lead Status
                     </option>
-                    <option value="optionText1">Success</option>
-                    <option value="optionText2">Ongoing</option>
-                    <option value="optionText3">Failed</option>
+                    <option value={null}>All</option>
+                    <option value="success">Success</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="failed">Failed</option>
                   </select>
                 </th>
                 <th scope="col" className="p-2">
@@ -118,6 +176,26 @@ export default function Product() {
             </thead>
             <tbody>
               {products
+                .filter((product) =>
+                  status === null
+                    ? product.status === "active"
+                    : product.lead_status.toLowerCase() === status
+                )
+                .filter((product) =>
+                  oem === null
+                    ? product.status === "active"
+                    : product.oem.toLowerCase() === oem
+                )
+                .filter((product) =>
+                  productLine === null
+                    ? product.status === "active"
+                    : product.product_line.toLowerCase() === productLine
+                )
+                .filter((product) =>
+                  productNo === null
+                    ? product.status === "active"
+                    : product.product_no.toLowerCase() === productNo
+                )
                 .map((product, index) => (
                   <tr key={index} className="bg-white border-b">
                     <td className="p-3">{product.id}</td>

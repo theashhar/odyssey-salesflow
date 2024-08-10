@@ -12,6 +12,7 @@ export default function AdminLayout() {
         <div className="col-start-1 h-[calc(100vh-3.5rem)] col-span-1 relative flex w-full max-w-[20rem] flex-col bg-primary text-white bg-clip-border p-4">
           <UserNavbar type="admin" />
         </div>
+        {/* main content */}
         <div className="col-span-5">
           <Outlet />
         </div>

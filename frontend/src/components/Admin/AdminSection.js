@@ -1,11 +1,16 @@
 import React from "react";
 import Salesperson from "./Salesperson";
-import salespeopleData from "../../data/salesperson.json";
+// import salespeopleData from "../../data/salesperson.json";
 import styles from "./AdminSection.module.css";
 import { FaUser } from "react-icons/fa";
 import { FaPlus, FaFileExcel } from "react-icons/fa";
+import AddSalesperson from "./AddSalesperson";
+import { useSelector } from "react-redux";
 
 const AdminSection = () => {
+  const salespeople = useSelector((state) => state.salesperson);
+  console.log(salespeople);
+
   const handleUpdate = (name) => {
     console.log("Update details for:", name);
     // Implement update logic
@@ -38,17 +43,16 @@ const AdminSection = () => {
           <FaUser size={40} color="#6c5b7b" /> {/* Admin/User Icon */}
           <div className={styles.name}>Trail Admin</div>
         </div>
+        <h3 className="text-2xl">Add Salespeople</h3>
+        <AddSalesperson />
+      </div>
+      <div className={styles.salespeople_header}>
+        <h3>Salespeople</h3>
         <div className={styles.actions}>
-          <button onClick={handleAddNew} title="Add New">
-            <FaPlus /> Add New
-          </button>
           <button onClick={handleExport} title="Export to Excel">
             <FaFileExcel /> Export
           </button>
         </div>
-      </div>
-      <div className={styles.salespeople_header}>
-        <h3>Salespeople</h3>
       </div>
       <div className={styles.salespeople_list}>
         <div className={styles.salespeople_table}>
@@ -59,13 +63,14 @@ const AdminSection = () => {
             <div className={styles.header_item}>Company Assigned</div>
             <div className={styles.header_item}>Actions</div>
           </div>
-          {salespeopleData.length > 0 ? (
-            salespeopleData.map((person) => (
+          {salespeople.length > 0 ? (
+            salespeople.map((salesperson) => (
               <Salesperson
-                key={person.id}
-                name={person.name}
-                id={person.id}
-                company={person.company}
+                key={salesperson.id}
+                name={salesperson.name}
+                id={salesperson.id}
+                sales
+                company={salesperson.company}
                 onUpdate={handleUpdate}
                 onRemove={handleRemove}
                 onRoleChange={handleRoleChange}

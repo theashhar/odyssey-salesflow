@@ -58,7 +58,7 @@ export default function Header({ username }) {
                 {username}
               </Link>
             </li>
-            <li>Logout</li>
+            <Link to="/">Logout</Link>
           </ul>
         </div>
       </div>

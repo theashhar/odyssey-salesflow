@@ -5,21 +5,10 @@ import Input, { Select } from "./Input";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 
-const oemData = ["HP", "Dell", "Samsung", "Lenovo"];
-
-const productLineData = [
-  "HPSamsung D780 flip",
-  "OnePlus 2",
-  "Gionee S6",
-  "Celkon C3030",
-];
-
-const productNoData = [
-  "HPSamsung D780 flip",
-  "OnePlus 2",
-  "Gionee S6",
-  "Celkon C3030",
-];
+//data
+import productLineData from "../../data/productline.json";
+import productNoData from "../../data/productNo.json";
+import oemData from "../../data/oemData.json";
 
 const leadStatus = ["success", "ongoing", "failed"];
 

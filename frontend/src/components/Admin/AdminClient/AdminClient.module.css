@@ -1,9 +1,9 @@
 /* src/components/Admin/Clients/ClientsPage.css */
 .clients_page {
   padding: 20px;
-  margin-left: 250px; /* Adjust based on Navbar width */
+  /* margin-left: 250px; Adjust based on Navbar width */
   background-color: #f9f9f9;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   padding-left: 4rem;

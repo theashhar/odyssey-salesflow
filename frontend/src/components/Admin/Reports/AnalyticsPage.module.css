@@ -1,9 +1,9 @@
 /* src/components/AnalyticsPage.css */
 .analytics_page {
   padding: 20px;
-  margin-left: 250px; /* Adjust based on Navbar width */
+  /* margin-left: 250px; Adjust based on Navbar width */
   background-color: #f9f9f9;
-  min-height: 100vh;
+  /* max-height: 100vh; */
   display: flex;
   flex-direction: column;
   padding-left: 4rem;
@@ -86,7 +86,7 @@
 #myChart {
   width: 100%;
   max-width: 800px;
-  height: 500px;
+  height: 200px;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
