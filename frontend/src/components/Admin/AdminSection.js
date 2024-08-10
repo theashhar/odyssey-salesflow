@@ -1,6 +1,5 @@
 import React from "react";
 import Salesperson from "./Salesperson";
-// import salespeopleData from "../../data/salesperson.json";
 import styles from "./AdminSection.module.css";
 import { FaUser } from "react-icons/fa";
 import { FaPlus, FaFileExcel } from "react-icons/fa";

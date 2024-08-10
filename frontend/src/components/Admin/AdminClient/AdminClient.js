@@ -5,9 +5,10 @@ import { useSelector } from "react-redux";
 
 const ClientsPage = () => {
   const clients = useSelector((state) => state.client);
+  const salesperson = useSelector((state) => state.salesperson);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSalesPerson, setSelectedSalesPerson] = useState("");
+  const [selectedSalesPerson, setSelectedSalesPerson] = useState(null);
   // const [clients] = useState(clientsData);
 
   const handleSearchChange = (e) => {
@@ -15,7 +16,9 @@ const ClientsPage = () => {
   };
 
   const handleSalesPersonChange = (e) => {
-    setSelectedSalesPerson(e.target.value);
+    let newValue =
+      e.target.value.toLowerCase() === "all" ? null : e.target.value;
+    setSelectedSalesPerson(newValue);
   };
 
   return (
@@ -33,9 +36,15 @@ const ClientsPage = () => {
             value={selectedSalesPerson}
             onChange={handleSalesPersonChange}
           >
-            <option value="">Select SalesPerson</option>
-            <option value="salesperson1">SalesPerson 1</option>
-            <option value="salesperson2">SalesPerson 2</option>
+            <option value="" disabled selected>
+              Select SalesPerson
+            </option>
+            <option value={null}>All</option>
+            {salesperson.map((person) => (
+              <option key={person.id} value={person.name}>
+                {person.name}
+              </option>
+            ))}
             {/* Add more options as needed */}
           </select>
         </div>
@@ -53,17 +62,23 @@ const ClientsPage = () => {
           </thead>
           <tbody>
             {clients.length > 0 ? (
-              clients.map((client) => (
-                <tr key={client.id}>
-                  <td>{client.salesperson}</td>
-                  <td>{client.id}</td>
-                  <td>{client.partner_name}</td>
-                  <td>{client.partner_rep_name}</td>
-                  <td>
-                    <button>Export</button>
-                  </td>
-                </tr>
-              ))
+              clients
+                .filter((client) =>
+                  selectedSalesPerson === null
+                    ? client.status === "active"
+                    : client.salesperson === selectedSalesPerson
+                )
+                .map((client) => (
+                  <tr key={client.id}>
+                    <td>{client.salesperson}</td>
+                    <td>{client.id}</td>
+                    <td>{client.partner_name}</td>
+                    <td>{client.partner_rep_name}</td>
+                    <td>
+                      <button>Export</button>
+                    </td>
+                  </tr>
+                ))
             ) : (
               <tr>
                 <td colSpan="5">No clients available</td>

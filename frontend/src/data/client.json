@@ -3,18 +3,21 @@
     "salesperson": "Salesperson 1",
     "id": "#1e4",
     "partner_name": "Tadeo Dibson",
-    "partner_rep_name": "Melita Muckloe"
+    "partner_rep_name": "Melita Muckloe",
+    "status": "active"
   },
   {
     "salesperson": "Salesperson 1",
     "id": "#267",
     "partner_name": "JLucina Stocks",
-    "partner_rep_name": "Schuyler Cosgreave"
+    "partner_rep_name": "Schuyler Cosgreave",
+    "status": "active"
   },
   {
     "salesperson": "Salesperson 2",
     "id": "#263",
     "partner_name": "JLucina Mock",
-    "partner_rep_name": "Schuyler raju"
+    "partner_rep_name": "Schuyler raju",
+    "status": "active"
   }
 ]
