@@ -1,6 +1,4 @@
 import Button from "../../components/User/Button";
-import usePagination from "../../hooks/usePagination";
-import Pagination from "../../components/Pagination";
 import ExcelExport from "../../components/User/ExcelExport";
 import { FaEdit, FaFilter, FaTrash } from "react-icons/fa";
 import AddProduct from "../../components/AddProduct";
@@ -9,10 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProduct,
   editProduct,
-  filterProductLine,
-  filterProductNo,
-  filterProductOEM,
-  filterProductStatus,
 } from "../../features/product/productSlice";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
@@ -65,8 +59,6 @@ export default function Product({ type }) {
 
   //modal states
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [productChanges, setProductChanges] = useState({});
 
   //update product data
   const [updateState, setUpdateState] = useState(false);
@@ -82,64 +74,6 @@ export default function Product({ type }) {
   useEffect(() => {
     console.log("Modal is open:", modalIsOpen);
   }, [modalIsOpen]);
-
-  const handleFollowUpChange = (productId, followUpDate) => {
-    setSelectedProduct(productId);
-    setModalIsOpen(true);
-  };
-  const handleStatusChange = (productId, leadStatus) => {
-    setSelectedProduct(productId);
-    setModalIsOpen(true);
-  };
-  const handleRemarkChange = (productId, remark) => {
-    setSelectedProduct(productId);
-    setModalIsOpen(true);
-  };
-  const saveChanges = () => {
-    if (selectedProduct) {
-      // Find the product to update
-      const updatedProduct = products.find(
-        (product) => product.id === selectedProduct
-      );
-
-      if (updatedProduct) {
-        // Prepare the updated data
-        const updatedData = {
-          id: selectedProduct,
-          follow_up_date:
-            productChanges[selectedProduct]?.follow_up_date ||
-            updatedProduct.follow_up_date,
-          remark:
-            productChanges[selectedProduct]?.remark || updatedProduct.remark,
-          lead_status:
-            productChanges[selectedProduct]?.lead_status ||
-            updatedProduct.lead_status,
-          // Include other fields as needed
-        };
-
-        // Check for differences to avoid unnecessary dispatch
-        const hasChanges = Object.keys(updatedData).some(
-          (key) => updatedData[key] !== updatedProduct[key]
-        );
-
-        if (hasChanges) {
-          // Dispatch the action to update the product
-          dispatch(editProduct(updatedData));
-        }
-
-        // Close the modal and reset state
-        setModalIsOpen(false);
-        setSelectedProduct(null);
-        setProductChanges((prev) => ({ ...prev, [selectedProduct]: {} }));
-      } else {
-        console.error("Product not found");
-      }
-    } else {
-      console.error("No product selected");
-    }
-  };
-
-  // const currentProduct = products.find((p) => p.id === selectedProduct);
 
   //filter
   const selectProductLine = (event) => {
