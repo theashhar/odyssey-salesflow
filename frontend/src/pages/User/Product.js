@@ -349,10 +349,7 @@ export default function Product({ type }) {
                             console.log(currentCol);
                             console.log(product.follow_up.length);
                             setCurrentCol((prev) => {
-                              if (
-                                currentCol.length > 1 &&
-                                currentCol.length > product.follow_up.length
-                              ) {
+                              if (currentCol.length > 1) {
                                 return prev.slice(0, -1);
                               } else {
                                 return prev;
