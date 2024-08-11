@@ -5,7 +5,7 @@ import UserNavbar from "../components/UserNavbar";
 export default function AdminLayout() {
   return (
     <div className="app">
-      <div className="grid grid-cols-6">
+      <div className="grid grid-cols-9">
         {/* header */}
         <Header username="admin" />
         {/* sidebar */}
@@ -13,7 +13,7 @@ export default function AdminLayout() {
           <UserNavbar type="admin" />
         </div>
         {/* main content */}
-        <div className="col-span-5">
+        <div className="col-span-8">
           <Outlet />
         </div>
       </div>
