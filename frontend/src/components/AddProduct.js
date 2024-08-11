@@ -24,9 +24,14 @@ const initialValues = {
   product_no: "",
   rate_quote: "",
   qnty: "",
-  lead_status: "ongoing",
-  follow_up_date: "",
-  remark: "",
+  follow_up: [
+    {
+      lead_status: "ongoing",
+      follow_up_date: "",
+      remark: "",
+    },
+  ],
+  status: "active",
 };
 
 export default function AddProduct({ type }) {
@@ -118,10 +123,10 @@ export default function AddProduct({ type }) {
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
-        <Select
-          label="product no."
+        <Input
+          type="text"
+          label="product no"
           name="product_no"
-          options={productNoData}
           value={values.product_no}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}

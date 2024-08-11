@@ -2,7 +2,7 @@
   {
     "sales_person": "Salesperson 1",
     "id": "#67h",
-    "entry_date": "5-12-2024",
+    "entry_date": "2024-12-04",
     "entry_time": "05:54",
     "partner_name": "Ailey Grog",
     "partner_rep_name": "Margalit Sancroft",
@@ -13,7 +13,7 @@
     "qnty": 23,
     "follow_up": [
       {
-        "follow_up_date": "2-22-2024",
+        "follow_up_date": "2024-03-04",
         "lead_status": "failed",
         "remark": "accumsan"
       }
@@ -23,7 +23,7 @@
   {
     "sales_person": "Salesperson 1",
     "id": "#cs5",
-    "entry_date": "10-18-2023",
+    "entry_date": "2023-10-03",
     "entry_time": "02:12",
     "partner_name": "Brigham Tolputt",
     "partner_rep_name": "Blake Buchan",
@@ -34,9 +34,9 @@
     "qnty": 41,
     "follow_up": [
       {
-        "follow_up_date": "2-22-2024",
+        "follow_up_date": "2024-01-20",
         "lead_status": "success",
-        "remark": "accumsan"
+        "remark": "good"
       }
     ],
     "status": "active"
@@ -44,7 +44,7 @@
   {
     "sales_person": "Salesperson 1",
     "id": "#5y8",
-    "entry_date": "9-9-2023",
+    "entry_date": "2023-09-09",
     "entry_time": "08:28",
     "partner_name": "Caro Henryson",
     "partner_rep_name": "Guendolen Hoggan",
@@ -55,9 +55,9 @@
     "qnty": 36,
     "follow_up": [
       {
-        "follow_up_date": "2-22-2024",
+        "follow_up_date": "2024-02-12",
         "lead_status": "ongoing",
-        "remark": "accumsan"
+        "remark": "nice"
       }
     ],
     "status": "active"
@@ -65,7 +65,7 @@
   {
     "sales_person": "Salesperson 1",
     "id": "#95t",
-    "entry_date": "7-22-2024",
+    "entry_date": "2024-04-07",
     "entry_time": "11:55",
     "partner_name": "Hannis Bengochea",
     "partner_rep_name": "Merilyn Bruineman",
@@ -76,9 +76,9 @@
     "qnty": 26,
     "follow_up": [
       {
-        "follow_up_date": "2-22-2024",
+        "follow_up_date": "2020-03-04",
         "lead_status": "failed",
-        "remark": "accumsan"
+        "remark": "bad"
       }
     ],
     "status": "active"
@@ -86,7 +86,7 @@
   {
     "sales_person": "Salesperson 1",
     "id": "#13e",
-    "entry_date": "4-3-2024",
+    "entry_date": "2024-02-12",
     "entry_time": "10:32",
     "partner_name": "Sheena Ellerton",
     "partner_rep_name": "Krisha Humpage",
@@ -97,9 +97,9 @@
     "qnty": 77,
     "follow_up": [
       {
-        "follow_up_date": "2-22-2024",
+        "follow_up_date": "2024-02-22",
         "lead_status": "ongoing",
-        "remark": "accumsan"
+        "remark": "nice"
       }
     ],
     "status": "active"

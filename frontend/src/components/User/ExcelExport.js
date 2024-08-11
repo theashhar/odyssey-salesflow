@@ -5,8 +5,28 @@ import Button from "./Button";
 import { FaFileExcel } from "react-icons/fa";
 
 const ExcelExport = ({ excelData, fileName }) => {
+  function flattenJson(json, parentKey = "", separator = ".") {
+    const result = {};
+    for (const key in json) {
+      const value = json[key];
+      const newKey = parentKey ? `${parentKey}${separator}${key}` : key;
+      if (
+        typeof value === "object" &&
+        value !== null &&
+        !Array.isArray(value)
+      ) {
+        Object.assign(result, flattenJson(value, newKey, separator));
+      } else {
+        result[newKey] = value;
+      }
+    }
+    return result;
+  }
+
   const exportToExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(excelData);
+    const flattenedData = excelData.map((item) => flattenJson(item));
+
+    const worksheet = XLSX.utils.json_to_sheet(flattenedData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
     const excelBuffer = XLSX.write(workbook, {
