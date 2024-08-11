@@ -11,7 +11,7 @@ import productNoData from "../data/productNo.json";
 import oemData from "../data/oemData.json";
 import salespersonData from "../data/salesperson.json";
 
-const leadStatus = ["success", "ongoing", "failed"];
+// const leadStatus = ["success", "ongoing", "failed"];
 
 const initialValues = {
   sales_person: "Salesperson 1",
@@ -139,32 +139,6 @@ export default function AddProduct({ type }) {
           label="qnty"
           name="qnty"
           value={values.qnty}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
-      </div>
-      <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
-        <Input
-          type="date"
-          label="follow-up date"
-          name="follow_up_date"
-          disabled
-          value={values.follow_up_date}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
-        <Select
-          label="lead status"
-          name="lead_status"
-          selected
-          value={values.lead_status}
-        />
-        <Input
-          type="text"
-          label="remark"
-          name="remark"
-          disabled
-          value={values.remark}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
