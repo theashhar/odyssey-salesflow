@@ -5,28 +5,10 @@ import Button from "./Button";
 import { FaFileExcel } from "react-icons/fa";
 
 const ExcelExport = ({ excelData, fileName }) => {
-  function flattenJson(json, parentKey = "", separator = ".") {
-    const result = {};
-    for (const key in json) {
-      const value = json[key];
-      const newKey = parentKey ? `${parentKey}${separator}${key}` : key;
-      if (
-        typeof value === "object" &&
-        value !== null &&
-        !Array.isArray(value)
-      ) {
-        Object.assign(result, flattenJson(value, newKey, separator));
-      } else {
-        result[newKey] = value;
-      }
-    }
-    return result;
-  }
-
   const exportToExcel = () => {
     const flattenedData = excelData.map(item => {
       if (item.follow_up && item.follow_up.length > 0) {
-        return item.follow_up.map((followUp, index) => ({
+        return item.follow_up.map(followUp => ({
           sales_person: item.sales_person,
           id: item.id,
           entry_date: item.entry_date,
@@ -63,7 +45,6 @@ const ExcelExport = ({ excelData, fileName }) => {
         };
       }
     }).flat();
-
     const worksheet = XLSX.utils.json_to_sheet(flattenedData, { header: [
       "sales_person",
       "id",
@@ -82,7 +63,7 @@ const ExcelExport = ({ excelData, fileName }) => {
       "status"
     ] });
 
-    const headerRow = XLSX.utils.sheet_add_aoa(worksheet, [
+    XLSX.utils.sheet_add_aoa(worksheet, [
       [
         "Sales Person",
         "ID",
@@ -122,5 +103,3 @@ const ExcelExport = ({ excelData, fileName }) => {
 };
 
 export default ExcelExport;
-
-
