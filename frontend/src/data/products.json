@@ -11,9 +11,13 @@
     "product_no": "ultra 2",
     "rate_quote": "$61.06",
     "qnty": 23,
-    "follow_up_date": "2-24-2024",
-    "lead_status": "success",
-    "remark": "vivamus",
+    "follow_up": [
+      {
+        "follow_up_date": "2-22-2024",
+        "lead_status": "failed",
+        "remark": "accumsan"
+      }
+    ],
     "status": "active"
   },
   {
@@ -28,10 +32,14 @@
     "product_no": "victus",
     "rate_quote": "$40.19",
     "qnty": 41,
-    "follow_up_date": "2-22-2024",
-    "lead_status": "failed",
-    "status": "active",
-    "remark": "accumsan"
+    "follow_up": [
+      {
+        "follow_up_date": "2-22-2024",
+        "lead_status": "success",
+        "remark": "accumsan"
+      }
+    ],
+    "status": "active"
   },
   {
     "sales_person": "Salesperson 1",
@@ -45,9 +53,13 @@
     "product_no": "rf 100-500mm",
     "rate_quote": "$80.56",
     "qnty": 36,
-    "follow_up_date": "11-29-2023",
-    "lead_status": "ongoing",
-    "remark": "turpis",
+    "follow_up": [
+      {
+        "follow_up_date": "2-22-2024",
+        "lead_status": "ongoing",
+        "remark": "accumsan"
+      }
+    ],
     "status": "active"
   },
   {
@@ -62,9 +74,13 @@
     "product_no": "eos r3",
     "rate_quote": "$0.10",
     "qnty": 26,
-    "follow_up_date": "12-16-2023",
-    "lead_status": "success",
-    "remark": "pede",
+    "follow_up": [
+      {
+        "follow_up_date": "2-22-2024",
+        "lead_status": "failed",
+        "remark": "accumsan"
+      }
+    ],
     "status": "active"
   },
   {
@@ -79,9 +95,13 @@
     "product_no": "inspiron 100",
     "rate_quote": "$87.47",
     "qnty": 77,
-    "follow_up_date": "5-26-2024",
-    "lead_status": "ongoing",
-    "remark": "vestibulum",
+    "follow_up": [
+      {
+        "follow_up_date": "2-22-2024",
+        "lead_status": "ongoing",
+        "remark": "accumsan"
+      }
+    ],
     "status": "active"
   }
 ]

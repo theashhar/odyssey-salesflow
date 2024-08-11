@@ -29,11 +29,18 @@ const defaultUpdateValues = {
   product_no: "",
   rate_quote: "",
   qnty: "",
-  lead_status: "ongoing",
-  follow_up_date: "",
-  remark: "",
+  follow_up: [
+    {
+      lead_status: "ongoing",
+      follow_up_date: "",
+      remark: "",
+    },
+  ],
+  status: "active",
 };
+
 const leadStatus = ["success", "ongoing", "failed"];
+
 // Modal styles
 const customModalStyles = {
   content: {
@@ -63,6 +70,8 @@ export default function Product({ type }) {
   //update product data
   const [updateState, setUpdateState] = useState(false);
   const [initialUpdateValues, setUpdateValues] = useState({});
+  const [currentCol, setCurrentCol] = useState([0]);
+  const [followUpLength, setFollowUpLength] = useState(1);
 
   //filter data
   const [productLine, setProductLine] = useState(null);
@@ -126,11 +135,21 @@ export default function Product({ type }) {
     enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values);
+      if (values.follow_up.length >= currentCol.length) {
+        setCurrentCol((prev) => [...prev, 1]);
+      }
       setUpdateState(false);
       dispatch(editProduct({ ...values }));
       setModalIsOpen(false);
     },
   });
+
+  useEffect(() => {
+    let list = products.map((product) => product);
+    console.log(list);
+    let updateList = list.filter((li) => li.follow_up);
+    console.log(updateList);
+  }, []);
 
   return (
     <>
@@ -233,29 +252,31 @@ export default function Product({ type }) {
                   <th scope="col" className="th-common">
                     Qnty
                   </th>
-                  <th scope="col" className="th-common">
-                    Follow-up
-                  </th>
-                  <th scope="col" className="th-common">
-                    <select
-                      className="status uppercase bg-transparent"
-                      onChange={selectStatus}
-                    >
-                      <option value="" disabled selected>
-                        Lead Status
-                      </option>
-                      <option value={null}>All</option>
-                      <option value="success">Success</option>
-                      <option value="ongoing">Ongoing</option>
-                      <option value="failed">Failed</option>
-                    </select>
-                  </th>
-                  <th scope="col" className="th-common">
-                    Remark
-                  </th>
-                  <th scope="col" className="th-common">
-                    Actions
-                  </th>
+                  {currentCol.map((cl, index) => (
+                    <>
+                      <th scope="col" className="th-common">
+                        Follow-up[{index}]
+                      </th>
+                      <th scope="col" className="th-common">
+                        <select
+                          className="status uppercase bg-transparent"
+                          onChange={selectStatus}
+                        >
+                          <option value="" disabled selected>
+                            Lead Status[{index}]
+                          </option>
+                          <option value={null}>All</option>
+                          <option value="success">Success</option>
+                          <option value="ongoing">Ongoing</option>
+                          <option value="failed">Failed</option>
+                        </select>
+                      </th>
+                      <th scope="col" className="th-common">
+                        Remark[{index}]
+                      </th>
+                    </>
+                  ))}
+                  <th scope="col" className="th-common"></th>
                 </tr>
               </thead>
               <tbody>
@@ -263,7 +284,8 @@ export default function Product({ type }) {
                   .filter((product) =>
                     status === null
                       ? product.status === "active"
-                      : product.lead_status.toLowerCase() === status
+                      : product.follow_up[0].lead_status.toLowerCase() ===
+                        status
                   )
                   .filter((product) =>
                     oem === null
@@ -295,21 +317,25 @@ export default function Product({ type }) {
                       <td className="p-2 border-b">{product.product_no}</td>
                       <td className="p-2 border-b">{product.rate_quote}</td>
                       <td className="p-2 border-b">{product.qnty}</td>
-                      <td className="p-2 border-b">{product.follow_up_date}</td>
-                      <td className="p-2 border-b">
-                        <span
-                          className={`px-[0.5rem] py-1 rounded-full text-white ${
-                            product.lead_status === "success"
-                              ? "bg-green-600"
-                              : product.lead_status === "ongoing"
-                              ? "bg-yellow-400"
-                              : "bg-red-600"
-                          }`}
-                        >
-                          {product.lead_status}
-                        </span>
-                      </td>
-                      <td className="p-2 border-b">{product.remark}</td>
+                      {product.follow_up.map((fl, index) => (
+                        <>
+                          <td className="p-2 border-b">{fl.follow_up_date}</td>
+                          <td className="p-2 border-b">
+                            <span
+                              className={`px-[0.5rem] py-1 rounded-full text-white ${
+                                fl.lead_status === "success"
+                                  ? "bg-green-600"
+                                  : fl.lead_status === "ongoing"
+                                  ? "bg-yellow-400"
+                                  : "bg-red-600"
+                              }`}
+                            >
+                              {fl.lead_status}
+                            </span>
+                          </td>
+                          <td className="p-2 border-b">{fl.remark}</td>
+                        </>
+                      ))}
                       <td className="p-2 border-b flex gap-2">
                         <Button
                           title="Edit"
@@ -319,9 +345,21 @@ export default function Product({ type }) {
                         </Button>
                         <Button
                           title="Delete"
-                          onHandleClick={() =>
-                            dispatch(deleteProduct(product.id))
-                          }
+                          onHandleClick={() => {
+                            console.log(currentCol);
+                            console.log(product.follow_up.length);
+                            setCurrentCol((prev) => {
+                              if (
+                                currentCol.length > 1 &&
+                                currentCol.length > product.follow_up.length
+                              ) {
+                                return prev.slice(0, -1);
+                              } else {
+                                return prev;
+                              }
+                            });
+                            dispatch(deleteProduct(product.id));
+                          }}
                         >
                           <FaTrash />
                         </Button>
@@ -349,7 +387,7 @@ export default function Product({ type }) {
               label="lead status"
               name="lead_status"
               options={leadStatus}
-              value={values.lead_status}
+              value={values.follow_up[0].lead_status}
               onHandleBlur={handleBlur}
               onHandleChange={handleChange}
             />
@@ -357,7 +395,7 @@ export default function Product({ type }) {
               type="date"
               label="follow up date"
               name="follow_up_date"
-              value={values.follow_up_date}
+              value={values.follow_up[0].follow_up_date}
               onHandleBlur={handleBlur}
               onHandleChange={handleChange}
             />
@@ -365,7 +403,7 @@ export default function Product({ type }) {
               type="text"
               label="remark"
               name="remark"
-              value={values.remark}
+              value={values.follow_up[0].remark}
               onHandleBlur={handleBlur}
               onHandleChange={handleChange}
             />

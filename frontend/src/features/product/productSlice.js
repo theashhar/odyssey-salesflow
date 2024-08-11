@@ -18,7 +18,8 @@ export const productSlice = createSlice({
       const { id } = action.payload;
       let updatableProduct = state.find((product) => product.id === id);
       if (updatableProduct) {
-        Object.assign(updatableProduct, action.payload);
+        // Object.assign(updatableProduct, action.payload);
+        updatableProduct.follow_up.push(action.payload);
       }
     },
     filterProductStatus: (state, action) => {
