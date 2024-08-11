@@ -18,9 +18,7 @@ export const productSlice = createSlice({
       const { id } = action.payload;
       let updatableProduct = state.find((product) => product.id === id);
       if (updatableProduct) {
-        updatableProduct = action.payload;
-        console.log(updatableProduct);
-        return updatableProduct;
+        Object.assign(updatableProduct, action.payload);
       }
     },
   },
