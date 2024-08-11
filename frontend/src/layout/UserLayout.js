@@ -23,7 +23,7 @@ export default function UserLayout() {
         <UserNavbar />
       </div>
       {/* main content */}
-      <div className="col-span-5">
+      <div className="col-span-5 bg-gray-50">
         <Outlet />
       </div>
     </div>

@@ -24,28 +24,29 @@ const initialValues = {
   product_no: "",
   rate_quote: "",
   qnty: "",
-  lead_status: "",
+  lead_status: "ongoing",
   follow_up_date: "",
   remark: "",
 };
 
 export default function AddProduct({ type }) {
+  //redux state
   const dispatch = useDispatch();
 
   //form functionality
   const { values, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, { resetForm }) => {
-      // console.log(values);
+      console.log(values);
       const numberic = "1234abcd";
       const nanoid = customAlphabet(numberic, 3);
-      dispatch(addProduct({ id: `#${nanoid()}`, ...values }));
+      dispatch(addProduct({ id: `#${nanoid()}`, status: "active", ...values }));
       resetForm();
     },
   });
 
   const salespersonArray = salespersonData.map((sp, index) => sp.name);
-  console.log(salespersonArray);
+  // console.log(salespersonArray);
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
@@ -67,24 +68,6 @@ export default function AddProduct({ type }) {
             value={values.sales_person}
           />
         )}
-      </div>
-      <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
-        <Input
-          type="date"
-          label="entry date"
-          name="entry_date"
-          value={values.entry_date}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
-        <Input
-          type="time"
-          label="entry time"
-          name="entry_time"
-          value={values.entry_time}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
         <Input
           type="text"
           label="partner name"
@@ -98,6 +81,22 @@ export default function AddProduct({ type }) {
           label="partner representative name"
           name="partner_rep_name"
           value={values.partner_rep_name}
+          onHandleBlur={handleBlur}
+          onHandleChange={handleChange}
+        />
+        <Input
+          type="date"
+          label="entry date"
+          name="entry_date"
+          value={values.entry_date}
+          onHandleBlur={handleBlur}
+          onHandleChange={handleChange}
+        />
+        <Input
+          type="time"
+          label="entry time"
+          name="entry_time"
+          value={values.entry_time}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
@@ -149,6 +148,7 @@ export default function AddProduct({ type }) {
           type="date"
           label="follow-up date"
           name="follow_up_date"
+          disabled
           value={values.follow_up_date}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
@@ -156,8 +156,15 @@ export default function AddProduct({ type }) {
         <Select
           label="lead status"
           name="lead_status"
-          options={leadStatus}
+          selected
           value={values.lead_status}
+        />
+        <Input
+          type="text"
+          label="remark"
+          name="remark"
+          disabled
+          value={values.remark}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />

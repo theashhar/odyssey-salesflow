@@ -32,7 +32,6 @@
   align-items: center;
 }
 
-.search_dropdown input,
 .search_dropdown select {
   padding: 10px;
   border: 1px solid #e1e1e1;

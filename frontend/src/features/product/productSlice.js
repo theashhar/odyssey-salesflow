@@ -15,10 +15,13 @@ export const productSlice = createSlice({
     },
     editProduct: (state, action) => {
       console.log(action);
-      let updatableProduct = state.filter(
-        (product) => product.id === action.payload
-      );
-      console.log(updatableProduct.entry_date);
+      const { id } = action.payload;
+      let updatableProduct = state.find((product) => product.id === id);
+      if (updatableProduct) {
+        updatableProduct = action.payload;
+        console.log(updatableProduct);
+        return updatableProduct;
+      }
     },
   },
 });
