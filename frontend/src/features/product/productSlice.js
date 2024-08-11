@@ -14,12 +14,16 @@ export const productSlice = createSlice({
       return state.filter((product) => product.id !== action.payload);
     },
     editProduct: (state, action) => {
-      console.log(action);
-      const { id } = action.payload;
+      console.log(action.payload);
+      const { id, follow_up_date, lead_status, remark } = action.payload;
       let updatableProduct = state.find((product) => product.id === id);
       if (updatableProduct) {
         // Object.assign(updatableProduct, action.payload);
-        updatableProduct.follow_up.push(action.payload);
+        updatableProduct.follow_up.push({
+          follow_up_date: follow_up_date,
+          lead_status: lead_status,
+          remark: remark,
+        });
       }
     },
     filterProductStatus: (state, action) => {

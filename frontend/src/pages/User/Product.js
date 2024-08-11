@@ -71,7 +71,6 @@ export default function Product({ type }) {
   const [updateState, setUpdateState] = useState(false);
   const [initialUpdateValues, setUpdateValues] = useState({});
   const [currentCol, setCurrentCol] = useState([0]);
-  const [followUpLength, setFollowUpLength] = useState(1);
 
   //filter data
   const [productLine, setProductLine] = useState(null);
@@ -120,8 +119,8 @@ export default function Product({ type }) {
   //update product
   useEffect(() => {
     const currentRow = products.filter((product) => product.id === updateState);
-    console.log(updateState);
-    console.log(currentRow[0]);
+    // console.log(updateState);
+    // console.log(currentRow[0]);
     setUpdateValues(currentRow[0]);
   }, [updateState]);
 
@@ -138,18 +137,11 @@ export default function Product({ type }) {
       if (values.follow_up.length >= currentCol.length) {
         setCurrentCol((prev) => [...prev, 1]);
       }
-      setUpdateState(false);
       dispatch(editProduct({ ...values }));
+      setUpdateState(false);
       setModalIsOpen(false);
     },
   });
-
-  useEffect(() => {
-    let list = products.map((product) => product);
-    console.log(list);
-    let updateList = list.filter((li) => li.follow_up);
-    console.log(updateList);
-  }, []);
 
   return (
     <>
@@ -170,9 +162,6 @@ export default function Product({ type }) {
             <form className="searchbar">
               <SearchBox />
             </form>
-            <Button title="filter">
-              <FaFilter />
-            </Button>
             <ExcelExport excelData={products} fileName={"products"} />
           </div>
           {/* product table */}
@@ -385,24 +374,24 @@ export default function Product({ type }) {
               name="lead_status"
               options={leadStatus}
               value={values.follow_up[0].lead_status}
-              onHandleBlur={handleBlur}
               onHandleChange={handleChange}
+              onHandleBlur={handleBlur}
             />
             <Input
               type="date"
               label="follow up date"
               name="follow_up_date"
               value={values.follow_up[0].follow_up_date}
-              onHandleBlur={handleBlur}
               onHandleChange={handleChange}
+              onHandleBlur={handleBlur}
             />
             <TextArea
               type="text"
               label="remark"
               name="remark"
               value={values.follow_up[0].remark}
-              onHandleBlur={handleBlur}
               onHandleChange={handleChange}
+              onHandleBlur={handleBlur}
             />
           </div>
         )}
