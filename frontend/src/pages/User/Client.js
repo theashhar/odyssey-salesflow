@@ -45,11 +45,14 @@ const Client = () => {
           <Button title="filter">
             <FaFilter />
           </Button>
-          <ExcelExport excelData={clients} fileName={"clients"} />
+          <ExcelExport tableID="clientTable" fileName={"clients"} />
         </div>
         {/* client table */}
         <div className="relative overflow-x-auto mt-4 grow">
-          <table className="w-full text-sm text-gray-700 text-left">
+          <table
+            id="clientTable"
+            className="w-full text-sm text-gray-700 text-left"
+          >
             <thead className="text-xs text-gray-900 uppercase bg-gray-100">
               <tr>
                 <th scope="col" className="p-3">

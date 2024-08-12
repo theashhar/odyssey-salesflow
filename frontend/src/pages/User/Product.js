@@ -9,7 +9,7 @@ import {
   deleteProduct,
   editProduct,
 } from "../../features/product/productSlice";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import Modal from "react-modal";
 
@@ -70,7 +70,7 @@ export default function Product({ type }) {
 
   //update product data
   const [updateState, setUpdateState] = useState(false);
-  const [initialUpdateValues, setUpdateValues] = useState({});
+  const [updateValues, setUpdateValues] = useState({});
   const [currentCol, setCurrentCol] = useState([0]);
 
   //filter data
@@ -121,7 +121,7 @@ export default function Product({ type }) {
   useEffect(() => {
     const currentRow = products.filter((product) => product.id === updateState);
     // console.log(updateState);
-    // console.log(currentRow[0]);
+    console.log(currentRow[0]);
     setUpdateValues(currentRow[0]);
   }, [updateState]);
 
@@ -131,7 +131,7 @@ export default function Product({ type }) {
   };
 
   const { values, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: initialUpdateValues || defaultUpdateValues,
+    initialValues: updateValues || defaultUpdateValues,
     enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values);
@@ -163,11 +163,14 @@ export default function Product({ type }) {
             <form className="searchbar">
               <SearchBox />
             </form>
-            <ExcelExport excelData={products} fileName={"products"} />
+            <ExcelExport tableID="productTable" fileName={"products"} />
           </div>
           {/* product table */}
           <div className="w-full overflow-x-scroll mt-4 grow">
-            <table className="text-sm w-full text-gray-700 text-left">
+            <table
+              id="productTable"
+              className="text-sm w-full text-gray-700 text-left"
+            >
               <thead className="text-xs text-gray-900 uppercase bg-gray-100">
                 <tr>
                   <th scope="col" className="th-common">
@@ -374,7 +377,7 @@ export default function Product({ type }) {
               label="lead status"
               name="lead_status"
               options={leadStatus}
-              value={values.follow_up[0].lead_status}
+              value={values.follow_up[values.follow_up.length - 1].lead_status}
               onHandleChange={handleChange}
               onHandleBlur={handleBlur}
             />
@@ -382,7 +385,9 @@ export default function Product({ type }) {
               type="date"
               label="follow up date"
               name="follow_up_date"
-              value={values.follow_up[0].follow_up_date}
+              value={
+                values.follow_up[values.follow_up.length - 1].follow_up_date
+              }
               onHandleChange={handleChange}
               onHandleBlur={handleBlur}
             />
@@ -390,7 +395,7 @@ export default function Product({ type }) {
               type="text"
               label="remark"
               name="remark"
-              value={values.follow_up[0].remark}
+              value={values.follow_up[values.follow_up.length - 1].remark}
               onHandleChange={handleChange}
               onHandleBlur={handleBlur}
             />
