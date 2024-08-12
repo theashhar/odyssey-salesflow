@@ -331,7 +331,7 @@ export default function Product({ type }) {
                       ))}
                       <td className="p-2 border-b flex gap-2">
                         <Button
-                          title="Edit"
+                          title="Update"
                           onHandleClick={() => handleEdit(product.id)}
                         >
                           <FaEdit />

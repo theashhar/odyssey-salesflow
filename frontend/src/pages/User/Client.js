@@ -42,9 +42,6 @@ const Client = () => {
           <form className="searchbar">
             <SearchBox />
           </form>
-          <Button title="filter">
-            <FaFilter />
-          </Button>
           <ExcelExport tableID="clientTable" fileName={"clients"} />
         </div>
         {/* client table */}

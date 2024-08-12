@@ -8,7 +8,7 @@ export default function Header({ username }) {
           to="#"
           className="text-black mr-4 block cursor-pointer font-sans text-base font-medium leading-relaxed text-inherit antialiased"
         >
-          Odessey Salesflow
+          Odyssey Salesflow
         </Link>
         <div className="hidden lg:block">
           <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">

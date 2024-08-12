@@ -40,11 +40,19 @@
 }
 
 .clients_list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   overflow-x: auto; /* Handle horizontal overflow */
+}
+
+.clients_list > div {
+  display: flex;
+  justify-content: end;
 }
 
 .clients_list table {

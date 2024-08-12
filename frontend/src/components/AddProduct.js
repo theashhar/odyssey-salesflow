@@ -58,7 +58,7 @@ export default function AddProduct({ type }) {
       <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
         {type === "admin" ? (
           <Select
-            label="odessey sales person"
+            label="odyssey sales person"
             name="sales_person"
             value={values.sales_person}
             options={salespersonArray}
@@ -67,7 +67,7 @@ export default function AddProduct({ type }) {
           />
         ) : (
           <Select
-            label="odessey sales person"
+            label="odyssey sales person"
             name="sales_person"
             selected
             value={values.sales_person}

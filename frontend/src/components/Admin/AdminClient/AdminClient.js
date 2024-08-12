@@ -53,14 +53,16 @@ const ClientsPage = () => {
         </div>
       </div>
       <div className={styles.clients_list}>
-        <table>
+        <div>
+          <ExcelExport tableID="adminClientTable" fileName={"admin-clients"} />
+        </div>
+        <table id="adminClientTable">
           <thead>
             <tr>
               <th>Name</th>
               <th>ID</th>
               <th>Partner Name</th>
               <th>Assigned Sales Rep</th>
-              <th>Export</th>
             </tr>
           </thead>
           <tbody>
@@ -77,12 +79,6 @@ const ClientsPage = () => {
                     <td>{client.id}</td>
                     <td>{client.partner_name}</td>
                     <td>{client.partner_rep_name}</td>
-                    <td>
-                      <ExcelExport
-                        excelData={clients}
-                        fileName={"admin-clients"}
-                      />
-                    </td>
                   </tr>
                 ))
             ) : (
