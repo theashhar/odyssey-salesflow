@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Button from "../../components/User/Button";
 import ExcelExport from "../../components/User/ExcelExport";
 import { FaEdit, FaFilter, FaTrash } from "react-icons/fa";
@@ -12,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import Modal from "react-modal";
 
-//data
+// Data imports
 import oemData from "../../data/oemData.json";
 import productNoData from "../../data/productNo.json";
 import productlineData from "../../data/productline.json";
