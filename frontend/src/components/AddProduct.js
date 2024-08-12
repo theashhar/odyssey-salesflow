@@ -3,11 +3,10 @@ import { addProduct } from "../features/product/productSlice";
 import Button from "./User/Button";
 import Input, { Select } from "./User/Input";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //data
 import productLineData from "../data/productline.json";
-import productNoData from "../data/productNo.json";
 import oemData from "../data/oemData.json";
 import salespersonData from "../data/salesperson.json";
 
@@ -37,6 +36,9 @@ const initialValues = {
 export default function AddProduct({ type }) {
   //redux state
   const dispatch = useDispatch();
+  const productLine = useSelector((state) => state.productline_category);
+  const oem = useSelector((state) => state.oem_category);
+  const salesperson = useSelector((state) => state.salesperson);
 
   //form functionality
   const { values, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -50,7 +52,7 @@ export default function AddProduct({ type }) {
     },
   });
 
-  const salespersonArray = salespersonData.map((sp, index) => sp.name);
+  const salespersonArray = salesperson.map((sp, index) => sp.name);
   // console.log(salespersonArray);
 
   return (
@@ -111,14 +113,14 @@ export default function AddProduct({ type }) {
           label="oem"
           name="oem"
           value={values.oem}
-          options={oemData}
+          options={oem}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
         <Select
           label="product line"
           name="product_line"
-          options={productLineData}
+          options={productLine}
           value={values.product_line}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}

@@ -1,12 +1,13 @@
 {
-  "name": "my-electron-app",
+  "name": "odyssey-salesflow-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "product master software",
   "main": "main.js",
   "scripts": {
     "start": "concurrently \"npm --prefix frontend start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build": "npm --prefix frontend run build",
-    "electron-pack": "npm run build && electron-builder",
+    "build-frontend": "npm --prefix frontend run build",
+    "build-electron": "electron-builder",
+    "electron-pack": "npm run build-frontend && npm run build-electron",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,7 +16,7 @@
   "devDependencies": {
     "concurrently": "^7.0.0",
     "electron": "^31.3.1",
-    "electron-builder": "^22.11.7",
+    "electron-builder": "^22.14.13",
     "electron-is-dev": "^3.0.1",
     "wait-on": "^6.0.0"
   },
@@ -23,5 +24,36 @@
     "chart.js": "^4.4.3",
     "file-saver": "^2.0.5",
     "react-chartjs-2": "^5.2.0"
+  },
+  "build": {
+    "appId": "com.odysseysalesflow.app",
+    "productName": "Odyssey Salesflow",
+    "files": [
+      "frontend/build/**/*",
+      "main.js",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ]
+    }
   }
 }

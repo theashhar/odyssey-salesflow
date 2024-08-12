@@ -1,122 +1,84 @@
-// src/components/AddCategoryPage.js
-import React, { useState, useEffect } from "react";
-import styles from "./AddCategoryPage.module.css";
-import { saveAs } from "file-saver";
-import oemData from "../../../data/category/oemData.json";
-import productLineData from "../../../data/category/productLineData.json";
-import partnerData from "../../../data/category/partnerData.json";
+import { customAlphabet } from "nanoid";
+import { addOEM } from "../../../features/category/oemSlice";
+import { addProductline } from "../../../features/category/productLineSlice";
+import { addSalesperson } from "../../../features/salesperson/salespersonSlice";
+import Button from "../../User/Button";
+import Input, { Select } from "../../User/Input";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 
-const AddCategoryPage = () => {
-  const [oem, setOem] = useState("");
-  const [productLine, setProductLine] = useState("");
-  const [partner, setPartner] = useState("");
-  const [oems, setOems] = useState([]);
-  const [productLines, setProductLines] = useState([]);
-  const [partners, setPartners] = useState([]);
+//data
+import productLineData from "../../../data/productline.json";
+import oemData from "../../../data/oemData.json";
+import salespersonData from "../../../data/salesperson.json";
 
-  useEffect(() => {
-    // Load data from JSON files
-    setOems(oemData);
-    setProductLines(productLineData);
-    setPartners(partnerData);
-  }, []);
+// const leadStatus = ["success", "ongoing", "failed"];
 
-  const addOem = () => {
-    setOems([...oems, oem]);
-    setOem("");
-  };
-
-  const addProductLine = () => {
-    setProductLines([...productLines, productLine]);
-    setProductLine("");
-  };
-
-  const addPartner = () => {
-    setPartners([...partners, partner]);
-    setPartner("");
-  };
-
-  const exportToExcel = () => {
-    const dataToExport = { oems, productLines, partners };
-    const blob = new Blob([JSON.stringify(dataToExport, null, 2)], {
-      type: "application/json",
-    });
-    saveAs(blob, "categories.json");
-  };
-
-  return (
-    <div className={styles.add_category_page}>
-      <h2 className={styles.title}>Add Category</h2>
-      <div className={styles.form_group}>
-        <label>Enter OEM:</label>
-        <input
-          type="text"
-          value={oem}
-          onChange={(e) => setOem(e.target.value)}
-          placeholder="Enter OEM"
-        />
-        <button className={styles.add_button} onClick={addOem}>
-          Add
-        </button>
-      </div>
-      <div className={styles.form_group}>
-        <label>Enter Product Line:</label>
-        <input
-          type="text"
-          value={productLine}
-          onChange={(e) => setProductLine(e.target.value)}
-          placeholder="Enter Product Line"
-        />
-        <button className={styles.add_button} onClick={addProductLine}>
-          Add
-        </button>
-      </div>
-      <div className={styles.form_group}>
-        <label>Enter Partner:</label>
-        <input
-          type="text"
-          value={partner}
-          onChange={(e) => setPartner(e.target.value)}
-          placeholder="Enter Partner"
-        />
-        <button className={styles.add_button} onClick={addPartner}>
-          Add
-        </button>
-      </div>
-
-      <h3>Available Categories</h3>
-      <div className={styles.available_categories}>
-        <div className={styles.category_list}>
-          <h4>OEMs</h4>
-          <ul>
-            {oems.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.category_list}>
-          <h4>Product Lines</h4>
-          <ul>
-            {productLines.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.category_list}>
-          <h4>Partners</h4>
-          <ul>
-            {partners.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <button className={styles.export_button} onClick={exportToExcel}>
-        Export to Excel
-      </button>
-    </div>
-  );
+const initialValues = {
+  sales_person: "",
+  oem: "",
+  product_line: "",
 };
 
-export default AddCategoryPage;
+export default function AddCategory({ type }) {
+  //redux state
+  const dispatch = useDispatch();
+
+  //form functionality
+  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values, { resetForm }) => {
+      console.log(values);
+      dispatch(addOEM(values.oem));
+      dispatch(addProductline(values.product_line));
+      dispatch(addSalesperson({ ...values }));
+      resetForm();
+    },
+  });
+
+  const salespersonArray = salespersonData.map((sp, index) => sp.name);
+  // console.log(salespersonArray);
+
+  return (
+    <form className="w-full" onSubmit={handleSubmit}>
+      <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
+        {type === "admin" ? (
+          <Select
+            label="odyssey sales person"
+            name="sales_person"
+            value={values.sales_person}
+            options={salespersonArray}
+            onHandleBlur={handleBlur}
+            onHandleChange={handleChange}
+          />
+        ) : (
+          <Select
+            label="odyssey sales person"
+            name="sales_person"
+            selected
+            value={values.sales_person}
+          />
+        )}
+      </div>
+      <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
+        <Input
+          type="text"
+          label="oem"
+          name="oem"
+          value={values.oem}
+          onHandleBlur={handleBlur}
+          onHandleChange={handleChange}
+        />
+        <Input
+          type="text"
+          label="product line"
+          name="product_line"
+          value={values.product_line}
+          onHandleBlur={handleBlur}
+          onHandleChange={handleChange}
+        />
+      </div>
+      <Button title="Add" type="submit" />
+    </form>
+  );
+}

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Admin/Dashboard";
 import AdminClient from "./components/Admin/AdminClient/AdminClient";
 import Report from "./components/Admin/Reports/Report";
-import AddCategoryPage from "./components/Admin/Category/Addcategory";
+import AddCategoryPage from "./pages/Admin/AddCategoryPage";
 import AdminLayout from "./layout/AdminLayout";
 
 import UserLayout from "./layout/UserLayout";

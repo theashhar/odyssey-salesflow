@@ -6,8 +6,17 @@ export const salespersonSlice = createSlice({
   initialState: salespeopleData,
   reducers: {
     addSalesperson: (state, action) => {
-      console.log(action);
-      state.push(action.payload);
+      console.log(action.payload);
+      const { oem, product_line, sales_person } = action.payload;
+      let updatablePerson = state.find(
+        (slp) => slp.name.toLowerCase() === sales_person.toLowerCase()
+      );
+      if (updatablePerson) {
+        updatablePerson.category.push({
+          oem: oem,
+          product_line: product_line,
+        });
+      }
     },
     deleteSalesperson: (state, action) => {
       console.log(action);

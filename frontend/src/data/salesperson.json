@@ -3,18 +3,68 @@
     "id": "SP001",
     "name": "Salesperson 1",
     "password": "salp123",
-    "company": "Tech Solutions Inc."
+    "company": "Tech Solutions Inc.",
+    "category": [
+      {
+        "oem": "HP",
+        "product_line": "laptop"
+      },
+      {
+        "oem": "Dell",
+        "product_line": "laptop"
+      },
+      {
+        "oem": "Samsung",
+        "product_line": "mobile"
+      },
+      {
+        "oem": "Apple",
+        "product_line": "watch"
+      }
+    ]
   },
   {
     "id": "SP002",
     "name": "Salesperson 2",
     "password": "salp1234",
-    "company": "Tech Solutions Inc."
+    "company": "Tech Solutions Inc.",
+    "category": [
+      {
+        "oem": "HP",
+        "product_line": "laptop"
+      },
+      {
+        "oem": "Dell",
+        "product_line": "laptop"
+      },
+      {
+        "oem": "Apple",
+        "product_line": "watch"
+      }
+    ]
   },
   {
     "id": "SP003",
     "name": "Salesperson 3",
     "password": "salp12345",
-    "company": "Tech Solutions Inc."
+    "company": "Tech Solutions Inc.",
+    "category": [
+      {
+        "oem": "HP",
+        "product_line": "laptop"
+      },
+      {
+        "oem": "Dell",
+        "product_line": "laptop"
+      },
+      {
+        "oem": "Samsung",
+        "product_line": "mobile"
+      },
+      {
+        "oem": "Canon",
+        "product_line": "printer"
+      }
+    ]
   }
 ]

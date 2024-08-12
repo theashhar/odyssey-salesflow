@@ -8,16 +8,18 @@ async function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      contextIsolation: true,
-      nodeIntegration: true,
-      preload: path.join(__dirname, "preload.js"),
+      // preload: path.resolve(__dirname, "preload.js"),
+      nodeIntegration: false, // Disable Node.js integration in renderer
+      contextIsolation: true, // Isolate the context for security
+      enableRemoteModule: false, // Disable the remote module (not secure)
+      sandbox: true,
     },
   });
 
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
-      : `file://${path.join(__dirname, "frontend/build/index.html")}`
+      : `file://${path.resolve(__dirname, "frontend/build/index.html")}`
   );
 
   if (isDev) {
