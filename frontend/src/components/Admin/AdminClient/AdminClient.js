@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./AdminClient.module.css";
 import { useSelector } from "react-redux";
 // import clientsData from "../../../data/adminclient.json";
+import SearchBox from "../../User/SearchBox";
+import ExcelExport from "../../User/ExcelExport";
 
 const ClientsPage = () => {
   const clients = useSelector((state) => state.client);
@@ -26,12 +28,13 @@ const ClientsPage = () => {
       <div className={styles.top_section}>
         <h2>SalesPerson Clients</h2>
         <div className={styles.search_dropdown}>
-          <input
+          {/* <input
             type="text"
             placeholder="Search clients..."
             value={searchTerm}
             onChange={handleSearchChange}
-          />
+          /> */}
+          <SearchBox />
           <select
             value={selectedSalesPerson}
             onChange={handleSalesPersonChange}
@@ -75,7 +78,10 @@ const ClientsPage = () => {
                     <td>{client.partner_name}</td>
                     <td>{client.partner_rep_name}</td>
                     <td>
-                      <button>Export</button>
+                      <ExcelExport
+                        excelData={clients}
+                        fileName={"admin-clients"}
+                      />
                     </td>
                   </tr>
                 ))

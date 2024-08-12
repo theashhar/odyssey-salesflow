@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Header({ username }) {
   return (
-    <nav className="col-span-6 block w-full h-[3.5rem] px-4 py-2 mx-auto text-white bg-primary bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200">
+    <nav className="col-span-9 block w-full h-[3.5rem] px-4 py-2 mx-auto text-white bg-primary bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200">
       <div className="w-full flex items-center justify-between text-blue-gray-900">
         <Link
           to="#"

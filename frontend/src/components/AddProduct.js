@@ -11,7 +11,7 @@ import productNoData from "../data/productNo.json";
 import oemData from "../data/oemData.json";
 import salespersonData from "../data/salesperson.json";
 
-const leadStatus = ["success", "ongoing", "failed"];
+// const leadStatus = ["success", "ongoing", "failed"];
 
 const initialValues = {
   sales_person: "Salesperson 1",
@@ -24,28 +24,34 @@ const initialValues = {
   product_no: "",
   rate_quote: "",
   qnty: "",
-  lead_status: "",
-  follow_up_date: "",
-  remark: "",
+  follow_up: [
+    {
+      lead_status: "ongoing",
+      follow_up_date: "",
+      remark: "",
+    },
+  ],
+  status: "active",
 };
 
 export default function AddProduct({ type }) {
+  //redux state
   const dispatch = useDispatch();
 
   //form functionality
   const { values, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, { resetForm }) => {
-      // console.log(values);
+      console.log(values);
       const numberic = "1234abcd";
       const nanoid = customAlphabet(numberic, 3);
-      dispatch(addProduct({ id: `#${nanoid()}`, ...values }));
+      dispatch(addProduct({ id: `#${nanoid()}`, status: "active", ...values }));
       resetForm();
     },
   });
 
   const salespersonArray = salespersonData.map((sp, index) => sp.name);
-  console.log(salespersonArray);
+  // console.log(salespersonArray);
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
@@ -67,24 +73,6 @@ export default function AddProduct({ type }) {
             value={values.sales_person}
           />
         )}
-      </div>
-      <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
-        <Input
-          type="date"
-          label="entry date"
-          name="entry_date"
-          value={values.entry_date}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
-        <Input
-          type="time"
-          label="entry time"
-          name="entry_time"
-          value={values.entry_time}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
         <Input
           type="text"
           label="partner name"
@@ -98,6 +86,22 @@ export default function AddProduct({ type }) {
           label="partner representative name"
           name="partner_rep_name"
           value={values.partner_rep_name}
+          onHandleBlur={handleBlur}
+          onHandleChange={handleChange}
+        />
+        <Input
+          type="date"
+          label="entry date"
+          name="entry_date"
+          value={values.entry_date}
+          onHandleBlur={handleBlur}
+          onHandleChange={handleChange}
+        />
+        <Input
+          type="time"
+          label="entry time"
+          name="entry_time"
+          value={values.entry_time}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
@@ -119,10 +123,10 @@ export default function AddProduct({ type }) {
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />
-        <Select
-          label="product no."
+        <Input
+          type="text"
+          label="product no"
           name="product_no"
-          options={productNoData}
           value={values.product_no}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
@@ -140,24 +144,6 @@ export default function AddProduct({ type }) {
           label="qnty"
           name="qnty"
           value={values.qnty}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
-      </div>
-      <div className="w-full flex items-center gap-x-6 border px-6 py-2 mb-3">
-        <Input
-          type="date"
-          label="follow-up date"
-          name="follow_up_date"
-          value={values.follow_up_date}
-          onHandleBlur={handleBlur}
-          onHandleChange={handleChange}
-        />
-        <Select
-          label="lead status"
-          name="lead_status"
-          options={leadStatus}
-          value={values.lead_status}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}
         />

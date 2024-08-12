@@ -27,7 +27,7 @@ const Client = () => {
   // };
 
   return (
-    <div className="clients-container w-full h-full flex flex-col items-center p-6 bg-gray-100">
+    <div className="clients-container w-full h-full flex flex-col items-center p-6">
       {/* add client section */}
       <div className="relative w-full mb-3">
         <h1 className="text-2xl mb-6">Add Client</h1>
@@ -35,7 +35,7 @@ const Client = () => {
           <AddClient />
         </div>
       </div>
-      <div className="w-full h-full flex flex-col p-4 bg-white grow">
+      <div className="w-full h-full flex flex-col p-4 bg-white shadow-lg grow">
         {/* table topbar */}
         <div className="flex items-center gap-x-6">
           <h2 className="flex-1 text-lg font-medium text-gray-800">Clients</h2>

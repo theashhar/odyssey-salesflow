@@ -39,7 +39,7 @@ export default function Profile({ type }) {
             />
           </div>
           <h1>{type === "admin" ? "Admin" : `user : ${user.username}`}</h1>
-          <span>{!type === "admin" && "id : #user231"}</span>
+          <span>{type === "user" && "id : #user231"}</span>
         </div>
         {type === "user" && (
           <Input
