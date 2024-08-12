@@ -377,7 +377,9 @@ export default function Product({ type }) {
               label="lead status"
               name="lead_status"
               options={leadStatus}
-              value={values.follow_up[values.follow_up.length - 1].lead_status}
+              defaultValue={
+                values.follow_up[values.follow_up.length - 1].lead_status
+              }
               onHandleChange={handleChange}
               onHandleBlur={handleBlur}
             />
@@ -385,7 +387,7 @@ export default function Product({ type }) {
               type="date"
               label="follow up date"
               name="follow_up_date"
-              value={
+              defaultValue={
                 values.follow_up[values.follow_up.length - 1].follow_up_date
               }
               onHandleChange={handleChange}
@@ -395,7 +397,9 @@ export default function Product({ type }) {
               type="text"
               label="remark"
               name="remark"
-              value={values.follow_up[values.follow_up.length - 1].remark}
+              defaultValue={
+                values.follow_up[values.follow_up.length - 1].remark
+              }
               onHandleChange={handleChange}
               onHandleBlur={handleBlur}
             />
