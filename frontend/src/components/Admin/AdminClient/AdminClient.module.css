@@ -1,13 +1,11 @@
 /* src/components/Admin/Clients/ClientsPage.css */
 .clients_page {
-  padding: 20px;
+  padding: 1.5rem;
   /* margin-left: 250px; Adjust based on Navbar width */
   background-color: #f9f9f9;
   /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
-  padding-left: 4rem;
-  padding-top: 2rem;
 }
 
 .top_section {

@@ -145,6 +145,7 @@ export default function AddProduct({ type }) {
           type="number"
           label="qnty"
           name="qnty"
+          min="0"
           value={values.qnty}
           onHandleBlur={handleBlur}
           onHandleChange={handleChange}

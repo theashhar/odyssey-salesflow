@@ -53,23 +53,21 @@ const AddCategoryPage = () => {
                 <th scope="col" className="p-3">
                   Product Line
                 </th>
-                <th scope="col" className="p-3">
+                {/* <th scope="col" className="p-3">
                   Actions
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody>
-              {salesperson.map((slp, index) => (
-                <tr key={index} className="bg-white border-b">
-                  <td className="p-3">{slp.name}</td>
-                  {slp.category.map((cat) => (
-                    <>
-                      <td className="p-3">{cat.oem}</td>
-                      <td className="p-3">{cat.product_line}</td>
-                    </>
-                  ))}
-                </tr>
-              ))}
+              {salesperson.flatMap((salesperson) =>
+                salesperson.category.map((cat, index) => (
+                  <tr key={`${salesperson.id}-${index}`}>
+                    <td className="p-2 border-b">{salesperson.name}</td>
+                    <td className="p-2 border-b">{cat.oem}</td>
+                    <td className="p-2 border-b">{cat.product_line}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
